@@ -1,60 +1,44 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion COMPLIE_SDK_VERSION
+
     defaultConfig {
-        applicationId "ru.popov.bodya.howmoney"
         minSdkVersion MIN_SDK_VERSION
         targetSdkVersion TARGET_SDK_VERSION
         versionCode VERSION_CODE
         versionName VERSION_NAME
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
-    // modules
-    implementation project(':core')
-    // local
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     // support
     implementation libraries.supportAppCompat
-    implementation libraries.supportDesign
-    implementation libraries.supportConstraintLayout
-    // kotlin
-    implementation libraries.kotlin
-    // dagger
-    implementation libraries.dagger
-    annotationProcessor libraries.daggerAnnotationProcessor
     // rxjava
     implementation libraries.rxJava2
     implementation libraries.rxAndroid
-    implementation libraries.rxBinding
     // moxy
     implementation libraries.moxy
     implementation libraries.moxyAndroid
     implementation libraries.moxyAppCompat
     annotationProcessor libraries.moxyCompiler
-    // network
-    implementation libraries.okHttp
-    implementation libraries.retrofit
-    implementation libraries.retrofitGsonConverter
-    implementation libraries.retrofitRxJavaAdapter
-    // navigation
-    implementation libraries.cicerone
-    // Developer tools
-    debugImplementation libraries.okHttpLoggingInterceptor
     // test
     testImplementation libraries.junit
     testImplementation libraries.hamcrest
     testImplementation libraries.mockito
-    testImplementation libraries.robolectric
 }

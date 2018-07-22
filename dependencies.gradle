@@ -1,8 +1,10 @@
 ext {
 
-    androidCompileSdkVersion = 28
-    androidMinSdkVersion = 16
-    androidTargetSdkVersion = 28
+    COMPLIE_SDK_VERSION = 28
+    MIN_SDK_VERSION = 16
+    TARGET_SDK_VERSION = 28
+    VERSION_CODE = 1
+    VERSION_NAME = "0.1"
 
     versions = [
             cicerone         : '3.0.0',

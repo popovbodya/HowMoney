@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import ru.popov.bodya.core.rx.RxSchedulers;
+
 /**
  * @author popovbodya
  */
