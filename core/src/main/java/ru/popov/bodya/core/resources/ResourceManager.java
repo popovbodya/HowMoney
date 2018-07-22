@@ -1,6 +1,7 @@
 package ru.popov.bodya.core.resources;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.support.annotation.ColorRes;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,14 @@ public class ResourceManager {
 
     public ResourceManager(Context context) {
         mContext = context;
+    }
+
+    public PackageManager getPackageManager() {
+        return mContext.getPackageManager();
+    }
+
+    public String getPackageName() {
+        return mContext.getPackageName();
     }
 
     public String getString(@StringRes int resId) {

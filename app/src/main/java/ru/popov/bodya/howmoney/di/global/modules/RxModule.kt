@@ -14,7 +14,6 @@ import javax.inject.Singleton
 @Module
 class RxModule {
 
-
     @Singleton
     @Provides
     fun provideRxSchedulersTransformer(rxSchedulers: RxSchedulers): RxSchedulersTransformer {

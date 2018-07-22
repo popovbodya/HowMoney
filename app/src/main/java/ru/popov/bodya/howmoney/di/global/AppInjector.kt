@@ -22,15 +22,15 @@ object AppInjector {
         DaggerAppComponent
                 .builder()
                 .application(howMoneyApp)
+                .appContext(howMoneyApp)
                 .build()
                 .inject(howMoneyApp)
 
-        howMoneyApp.registerActivityLifecycleCallbacks(object : ActivityCreatedCallbackListener() {
-            override fun onActivityCreated(activity: Activity) {
-                obtainActivityCreatedCallback(activity)
-            }
-
-        })
+//        howMoneyApp.registerActivityLifecycleCallbacks(object : ActivityCreatedCallbackListener() {
+//            override fun onActivityCreated(activity: Activity) {
+//                obtainActivityCreatedCallback(activity)
+//            }
+//        })
     }
 
     private fun obtainActivityCreatedCallback(activity: Activity) {
