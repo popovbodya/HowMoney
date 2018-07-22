@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion COMPLIE_SDK_VERSION
@@ -18,6 +18,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -33,7 +38,9 @@ dependencies {
     implementation libraries.kotlin
     // dagger
     implementation libraries.dagger
-    annotationProcessor libraries.daggerAnnotationProcessor
+    implementation libraries.daggerAndroid
+    kapt libraries.daggerAndroidProcessor
+    kapt libraries.daggerCompiler
     // rxjava
     implementation libraries.rxJava2
     implementation libraries.rxAndroid
@@ -42,7 +49,7 @@ dependencies {
     implementation libraries.moxy
     implementation libraries.moxyAndroid
     implementation libraries.moxyAppCompat
-    annotationProcessor libraries.moxyCompiler
+    kapt libraries.moxyCompiler
     // network
     implementation libraries.okHttp
     implementation libraries.retrofit
