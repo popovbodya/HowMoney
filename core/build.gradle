@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion COMPLIE_SDK_VERSION
@@ -20,8 +22,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -29,6 +31,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // support
     implementation libraries.supportAppCompat
+    // kotlin
+    implementation libraries.kotlin
+    // dagger
+    implementation libraries.dagger
     // rxjava
     implementation libraries.rxJava2
     implementation libraries.rxAndroid

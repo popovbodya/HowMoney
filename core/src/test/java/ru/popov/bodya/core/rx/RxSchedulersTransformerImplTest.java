@@ -68,6 +68,15 @@ public class RxSchedulersTransformerImplTest {
     }
 
     @Test
+    public void testGetComputationToMainTransformer() {
+        Observable
+                .just(1)
+                .compose(mRxSchedulersTransformer.getComputationToMainTransformer());
+        verifyRxSchedulersComputationMain();
+    }
+
+
+    @Test
     public void testGetComputationToMainTransformerSingle() {
         Single
                 .just(1)

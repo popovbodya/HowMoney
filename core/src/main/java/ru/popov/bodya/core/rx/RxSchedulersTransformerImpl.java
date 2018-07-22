@@ -54,6 +54,13 @@ public class RxSchedulersTransformerImpl implements RxSchedulersTransformer {
     }
 
     @Override
+    public <T> ObservableTransformer<T, T> getComputationToMainTransformer() {
+        return upstream -> upstream
+                .subscribeOn(mRxSchedulers.getComputationScheduler())
+                .observeOn(mRxSchedulers.getMainThreadScheduler());
+    }
+
+    @Override
     public <T> SingleTransformer<T, T> getComputationToMainTransformerSingle() {
         return upstream -> upstream
                 .subscribeOn(mRxSchedulers.getComputationScheduler())

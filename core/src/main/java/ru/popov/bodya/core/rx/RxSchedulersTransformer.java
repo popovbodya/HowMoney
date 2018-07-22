@@ -22,6 +22,8 @@ public interface RxSchedulersTransformer {
 
     <T> FlowableTransformer<T, T> getIOToMainTransformerFlowable();
 
+    <T> ObservableTransformer<T, T> getComputationToMainTransformer();
+
     <T> SingleTransformer<T, T> getComputationToMainTransformerSingle();
 
 }
