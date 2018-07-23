@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion COMPLIE_SDK_VERSION
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION
+        targetSdkVersion TARGET_SDK_VERSION
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // support
+    implementation libraries.supportAppCompat
+    // kotlin
+    implementation libraries.kotlin
+    // dagger
+    implementation libraries.dagger
+    // rxjava
+    implementation libraries.rxJava2
+    implementation libraries.rxAndroid
+    // moxy
+    implementation libraries.moxy
+    implementation libraries.moxyAndroid
+    implementation libraries.moxyAppCompat
+    annotationProcessor libraries.moxyCompiler
+    // test
+    testImplementation libraries.junit
+    testImplementation libraries.hamcrest
+    testImplementation libraries.mockito
+}

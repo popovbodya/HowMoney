@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion COMPLIE_SDK_VERSION
+    defaultConfig {
+        applicationId "ru.popov.bodya.howmoney"
+        minSdkVersion MIN_SDK_VERSION
+        targetSdkVersion TARGET_SDK_VERSION
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // modules
+    implementation project(':core')
+    // local
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // support
+    implementation libraries.supportAppCompat
+    implementation libraries.supportDesign
+    implementation libraries.supportConstraintLayout
+    implementation libraries.supportPreference
+    // kotlin
+    implementation libraries.kotlin
+    // dagger
+    implementation libraries.dagger
+    implementation libraries.daggerAndroid
+    kapt libraries.daggerAndroidProcessor
+    kapt libraries.daggerCompiler
+    // rxjava
+    implementation libraries.rxJava2
+    implementation libraries.rxAndroid
+    implementation libraries.rxBinding
+    // moxy
+    implementation libraries.moxy
+    implementation libraries.moxyAndroid
+    implementation libraries.moxyAppCompat
+    kapt libraries.moxyCompiler
+    // network
+    implementation libraries.okHttp
+    implementation libraries.retrofit
+    implementation libraries.retrofitGsonConverter
+    implementation libraries.retrofitRxJavaAdapter
+    // navigation
+    implementation libraries.cicerone
+    // Developer tools
+    debugImplementation libraries.okHttpLoggingInterceptor
+    // test
+    testImplementation libraries.junit
+    testImplementation libraries.hamcrest
+    testImplementation libraries.mockito
+    testImplementation libraries.robolectric
+}

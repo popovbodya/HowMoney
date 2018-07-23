@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Settings screen-->
+    <string name="settings_currency_type_section">Currency selection</string>
+    <string name="settings_currency_title">Select the default currency</string>
+    <string name="settings_default_value">USD</string>
+    <string name="settings_currency_key">settings_currency_key</string>
+
+    <!--Launch screen-->
+    <string name="launch_menu_settings">Settings</string>
+    <string name="lauch_menu_about">About app</string>
+
+    <!--About screen-->
+    <string name="about_toolbar_title">About app</string>
+    <string name="about_version_template">0.1</string>
+    <string name="about_author">Author:\nPopov Bogdan</string>
+    <string name="about_email_title">Email:\npopovbodya@gmail.com</string>
+    <string name="about_yandex_school">Project:\nYandex Mobile Development School</string>
+    <string name="about_logo_image_content_desc">Application logo</string>
+    <string name="about_default_version_code">0.1</string>
+    <string name="about_email_subject">Feedback</string>
+</resources>

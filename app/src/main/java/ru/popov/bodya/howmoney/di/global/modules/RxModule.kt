@@ -1,0 +1,26 @@
+package ru.popov.bodya.howmoney.di.global.modules
+
+import dagger.Module
+import dagger.Provides
+import ru.popov.bodya.core.rx.RxSchedulers
+import ru.popov.bodya.core.rx.RxSchedulersImpl
+import ru.popov.bodya.core.rx.RxSchedulersTransformer
+import ru.popov.bodya.core.rx.RxSchedulersTransformerImpl
+import javax.inject.Singleton
+
+/**
+ *  @author popovbodya
+ */
+@Module
+class RxModule {
+
+    @Singleton
+    @Provides
+    internal fun provideRxSchedulersTransformer(rxSchedulers: RxSchedulers): RxSchedulersTransformer =
+            RxSchedulersTransformerImpl(rxSchedulers)
+
+
+    @Singleton
+    @Provides
+    internal fun provideRxSchedulers(): RxSchedulers = RxSchedulersImpl()
+}

@@ -1,0 +1,30 @@
+<resources>
+    <!--application-->
+    <string name="app_name">HowMoney</string>
+    <string name="email">popovbodya@gmail.com</string>
+    <string name="currency_usd">USD</string>
+    <string name="currency_rub">RUB</string>
+
+    <!--Account screen-->
+    <string name="account_amount">%d %s</string>
+
+    <!--Settings screen-->
+    <string name="settings_currency_type_section">Выбор валюты</string>
+    <string name="settings_currency_title">Выберите стандартную валюту для показа</string>
+    <string name="settings_default_value">USD</string>
+    <string name="settings_currency_key">settings_currency_key</string>
+
+    <!--Launch screen-->
+    <string name="launch_menu_settings">Настройки</string>
+    <string name="lauch_menu_about">О приложении</string>
+
+    <!--About screen-->
+    <string name="about_toolbar_title">О приложении</string>
+    <string name="about_version_template">0.1</string>
+    <string name="about_author">Автор:\nПопов Богдан</string>
+    <string name="about_email_title">Почта:\npopovbodya@gmail.com</string>
+    <string name="about_yandex_school">В рамках проекта:\nШкола мобильной разработки Яндекс</string>
+    <string name="about_logo_image_content_desc">Логотип приложения</string>
+    <string name="about_default_version_code">0.1</string>
+    <string name="about_email_subject">Отзыв о приложении</string>
+</resources>
