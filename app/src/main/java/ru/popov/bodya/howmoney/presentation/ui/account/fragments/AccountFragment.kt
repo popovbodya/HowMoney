@@ -13,8 +13,9 @@ import android.support.v7.widget.Toolbar
 import dagger.android.support.AndroidSupportInjection
 import ru.popov.bodya.howmoney.presentation.mvp.account.AccountView
 import android.view.MenuInflater
-
-
+import android.widget.TextView
+import ru.popov.bodya.howmoney.domain.global.models.Currency
+import java.util.*
 
 
 /**
@@ -25,6 +26,9 @@ class AccountFragment : BaseCoreFragment(), AccountView {
     @Inject
     @InjectPresenter
     lateinit var accountPresenter: AccountPresenter
+
+    private lateinit var amountRUBTextView: TextView
+    private lateinit var amountUSDTextView: TextView
 
     @ProvidePresenter
     fun provideAccountPresenter(): AccountPresenter = accountPresenter
@@ -60,7 +64,17 @@ class AccountFragment : BaseCoreFragment(), AccountView {
         }
     }
 
+    override fun showRUBAmount(amount: Long) {
+        amountRUBTextView.text = String.format(Locale.ENGLISH, getString(R.string.account_amount), amount, Currency.RUB.stringValue)
+    }
+
+    override fun showUSDAmount(amount: Long){
+        amountUSDTextView.text = String.format(Locale.ENGLISH, getString(R.string.account_amount), amount, Currency.USD.stringValue)
+    }
+
     private fun initViews(parentView: View) {
+        amountRUBTextView = parentView.findViewById(R.id.amount_rub_text_view)
+        amountUSDTextView = parentView.findViewById(R.id.amount_usd_text_view)
         initToolbar(parentView)
     }
 

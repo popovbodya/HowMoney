@@ -22,7 +22,9 @@ import ru.popov.bodya.howmoney.presentation.ui.about.fragments.AboutFragment
 import ru.popov.bodya.howmoney.presentation.ui.account.fragments.AccountFragment
 import ru.popov.bodya.howmoney.presentation.ui.global.Screens.ABOUT_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.global.Screens.ACCOUNT_SCREEN
+import ru.popov.bodya.howmoney.presentation.ui.global.Screens.SETTINGS_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.global.Screens.WRITE_EMAIL_SCREEN
+import ru.popov.bodya.howmoney.presentation.ui.settings.fragments.SettingsFragment
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
@@ -47,7 +49,7 @@ class LaunchActivity : BaseCoreActivity(), LaunchView, Injectable, HasSupportFra
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.launch_activity_layout)
         Log.e("bodya", launchPresenter.toString())
     }
 
@@ -78,6 +80,7 @@ class LaunchActivity : BaseCoreActivity(), LaunchView, Injectable, HasSupportFra
         override fun createFragment(screenKey: String, data: Any?): Fragment? {
             return when (screenKey) {
                 ACCOUNT_SCREEN -> AccountFragment()
+                SETTINGS_SCREEN -> SettingsFragment()
                 ABOUT_SCREEN -> AboutFragment()
                 else -> null
             }

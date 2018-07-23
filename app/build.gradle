@@ -34,6 +34,7 @@ dependencies {
     implementation libraries.supportAppCompat
     implementation libraries.supportDesign
     implementation libraries.supportConstraintLayout
+    implementation libraries.supportPreference
     // kotlin
     implementation libraries.kotlin
     // dagger

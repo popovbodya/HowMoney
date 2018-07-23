@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="currency_keys">
+        <item>@string/currency_usd</item>
+        <item>@string/currency_rub</item>
+    </string-array>
+
+    <string-array name="currency_values">
+        <item>@string/currency_usd</item>
+        <item>@string/currency_rub</item>
+    </string-array>
+</resources>
