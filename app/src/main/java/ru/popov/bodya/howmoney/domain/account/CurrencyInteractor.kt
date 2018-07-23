@@ -8,7 +8,7 @@ import ru.popov.bodya.howmoney.domain.global.models.OperationType
 /**
  *  @author popovbodya
  */
-class CurrencyInteractor() {
+class CurrencyInteractor {
 
     fun getCurrentCurrencyAmount(currency: Currency): Single<Long> {
         return Single.fromCallable { calculateAmountInRublesWithCurrency(currency, getStubAmount()) }

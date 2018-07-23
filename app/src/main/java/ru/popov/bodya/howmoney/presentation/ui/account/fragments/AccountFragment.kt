@@ -40,7 +40,7 @@ class AccountFragment : BaseCoreFragment(), AccountView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val parentView = inflater.inflate(R.layout.account_fragment_layout, container, false)
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
         initViews(parentView)
         return parentView
     }

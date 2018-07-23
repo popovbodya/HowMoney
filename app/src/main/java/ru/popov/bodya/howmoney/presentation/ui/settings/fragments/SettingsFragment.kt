@@ -29,7 +29,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val preference = findPreference(getString(R.string.settings_currency_key))
-        preference.setOnPreferenceChangeListener { preference, newValue -> saveNewValue(newValue) }
+        preference.setOnPreferenceChangeListener { pref, newValue -> saveNewValue(newValue) }
     }
 
     private fun saveNewValue(newValue: Any): Boolean {

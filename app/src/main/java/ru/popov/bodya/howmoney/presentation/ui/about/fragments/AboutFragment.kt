@@ -21,7 +21,7 @@ import javax.inject.Inject
 /**
  *  @author popovbodya
  */
-class AboutFragment() : BaseCoreFragment(), AboutView {
+class AboutFragment : BaseCoreFragment(), AboutView {
 
     @Inject
     @InjectPresenter
@@ -39,7 +39,7 @@ class AboutFragment() : BaseCoreFragment(), AboutView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.about_fragment_layout, container, false)
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
         initViews(view)
         return view
     }

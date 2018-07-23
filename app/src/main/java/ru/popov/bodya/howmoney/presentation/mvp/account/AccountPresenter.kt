@@ -9,7 +9,6 @@ import ru.popov.bodya.howmoney.domain.account.CurrencyInteractor
 import ru.popov.bodya.howmoney.domain.global.models.Currency
 import ru.popov.bodya.howmoney.presentation.ui.global.Screens
 import ru.terrakok.cicerone.Router
-import java.util.*
 import javax.inject.Inject
 
 /**

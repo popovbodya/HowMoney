@@ -33,7 +33,7 @@ class SharedPreferencesWrapper(private val sharedPreferences: SharedPreferences)
     }
 
     fun saveDefaultCurrency(defaultCurrency: String) {
-        val editor = sharedPreferences.edit();
+        val editor = sharedPreferences.edit()
         editor.putString(CURRENCY_TYPE_KEY, defaultCurrency)
         editor.apply()
     }

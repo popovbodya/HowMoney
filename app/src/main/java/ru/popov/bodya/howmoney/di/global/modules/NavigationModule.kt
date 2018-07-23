@@ -15,19 +15,14 @@ class NavigationModule {
 
     @Provides
     @Singleton
-    internal fun provideCicerone(): Cicerone<out Router> {
-        return Cicerone.create()
-    }
+    internal fun provideCicerone(): Cicerone<out Router> = Cicerone.create()
 
     @Provides
     @Singleton
-    internal fun provideRouter(cicerone: Cicerone<out Router>): Router {
-        return cicerone.router
-    }
+    internal fun provideRouter(cicerone: Cicerone<out Router>): Router = cicerone.router
 
     @Provides
     @Singleton
-    internal fun provideNavigationHolder(cicerone: Cicerone<out Router>): NavigatorHolder {
-        return cicerone.navigatorHolder
-    }
+    internal fun provideNavigationHolder(cicerone: Cicerone<out Router>): NavigatorHolder = cicerone.navigatorHolder
+
 }

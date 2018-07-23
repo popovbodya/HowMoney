@@ -16,11 +16,11 @@ class RxModule {
 
     @Singleton
     @Provides
-    fun provideRxSchedulersTransformer(rxSchedulers: RxSchedulers): RxSchedulersTransformer {
-        return RxSchedulersTransformerImpl(rxSchedulers)
-    }
+    internal fun provideRxSchedulersTransformer(rxSchedulers: RxSchedulers): RxSchedulersTransformer =
+            RxSchedulersTransformerImpl(rxSchedulers)
+
 
     @Singleton
     @Provides
-    fun provideRxSchedulers(): RxSchedulers = RxSchedulersImpl()
+    internal fun provideRxSchedulers(): RxSchedulers = RxSchedulersImpl()
 }

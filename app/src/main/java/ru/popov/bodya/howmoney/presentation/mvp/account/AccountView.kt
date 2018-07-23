@@ -11,5 +11,4 @@ interface AccountView: AppView {
     fun showRUBAmount(amount: Long)
 
     fun showUSDAmount(amount: Long)
-
 }
