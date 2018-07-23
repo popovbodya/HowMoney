@@ -11,20 +11,17 @@ import android.widget.TextView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
-import ru.popov.bodya.core.dagger.Injectable
 import ru.popov.bodya.core.mvp.BaseCoreFragment
 import ru.popov.bodya.howmoney.R
 import ru.popov.bodya.howmoney.presentation.mvp.about.AboutPresenter
 import ru.popov.bodya.howmoney.presentation.mvp.about.AboutView
 import javax.inject.Inject
-import io.reactivex.internal.util.EndConsumerHelper.composeMessage
-
 
 
 /**
  *  @author popovbodya
  */
-class AboutFragment() : BaseCoreFragment(), AboutView, Injectable {
+class AboutFragment() : BaseCoreFragment(), AboutView {
 
     @Inject
     @InjectPresenter

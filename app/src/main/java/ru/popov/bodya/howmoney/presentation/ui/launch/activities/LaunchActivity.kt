@@ -13,7 +13,6 @@ import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import ru.popov.bodya.core.dagger.Injectable
 import ru.popov.bodya.core.mvp.BaseCoreActivity
 import ru.popov.bodya.howmoney.R
 import ru.popov.bodya.howmoney.presentation.mvp.launch.LaunchPresenter
@@ -33,7 +32,7 @@ import javax.inject.Inject
 /**
  *  @author popovbodya
  */
-class LaunchActivity : BaseCoreActivity(), LaunchView, Injectable, HasSupportFragmentInjector {
+class LaunchActivity : BaseCoreActivity(), LaunchView, HasSupportFragmentInjector {
 
     @Inject
     @InjectPresenter
