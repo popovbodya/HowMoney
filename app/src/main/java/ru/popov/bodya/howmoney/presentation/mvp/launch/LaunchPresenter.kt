@@ -14,7 +14,7 @@ class LaunchPresenter @Inject constructor(private val router: Router) : AppPrese
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        router.navigateTo(ACCOUNT_SCREEN)
+        router.replaceScreen(ACCOUNT_SCREEN)
     }
 
     fun onBackPressed() {
