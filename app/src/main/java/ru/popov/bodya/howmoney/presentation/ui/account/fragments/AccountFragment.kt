@@ -16,7 +16,6 @@ import android.view.MenuInflater
 import android.widget.TextView
 import ru.popov.bodya.howmoney.domain.account.models.Currency
 import java.util.*
-import javax.inject.Inject
 
 
 /**
