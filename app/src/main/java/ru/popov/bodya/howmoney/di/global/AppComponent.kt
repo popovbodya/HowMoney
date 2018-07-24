@@ -7,8 +7,8 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import ru.popov.bodya.core.dagger.ApplicationContext
 import ru.popov.bodya.howmoney.app.HowMoneyApp
-import ru.popov.bodya.howmoney.di.global.modules.ResourceModule
 import ru.popov.bodya.howmoney.di.global.modules.NavigationModule
+import ru.popov.bodya.howmoney.di.global.modules.ResourceModule
 import ru.popov.bodya.howmoney.di.global.modules.RxModule
 import javax.inject.Singleton
 

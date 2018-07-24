@@ -1,21 +1,20 @@
 package ru.popov.bodya.howmoney.presentation.ui.account.fragments
 
 import android.os.Bundle
-import android.view.*
-import ru.popov.bodya.core.mvp.BaseCoreFragment
-import ru.popov.bodya.howmoney.R
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
-import ru.popov.bodya.howmoney.presentation.mvp.account.AccountPresenter
-import javax.inject.Inject
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import dagger.android.support.AndroidSupportInjection
-import ru.popov.bodya.howmoney.presentation.mvp.account.AccountView
-import android.view.MenuInflater
+import android.view.*
 import android.widget.TextView
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import dagger.android.support.AndroidSupportInjection
+import ru.popov.bodya.core.mvp.BaseCoreFragment
+import ru.popov.bodya.howmoney.R
 import ru.popov.bodya.howmoney.domain.global.models.Currency
+import ru.popov.bodya.howmoney.presentation.mvp.account.AccountPresenter
+import ru.popov.bodya.howmoney.presentation.mvp.account.AccountView
 import java.util.*
+import javax.inject.Inject
 
 
 /**
@@ -68,7 +67,7 @@ class AccountFragment : BaseCoreFragment(), AccountView {
         amountRUBTextView.text = String.format(Locale.ENGLISH, getString(R.string.account_amount), amount, Currency.RUB.stringValue)
     }
 
-    override fun showUSDAmount(amount: Long){
+    override fun showUSDAmount(amount: Long) {
         amountUSDTextView.text = String.format(Locale.ENGLISH, getString(R.string.account_amount), amount, Currency.USD.stringValue)
     }
 
