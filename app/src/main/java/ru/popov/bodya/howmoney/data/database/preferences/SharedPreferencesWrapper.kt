@@ -18,7 +18,6 @@ class SharedPreferencesWrapper(private val sharedPreferences: SharedPreferences)
         val currency: String = sharedPreferences.getString(CURRENCY_TYPE_KEY, USD_CURRENCY)
         return when (currency) {
             USD_CURRENCY -> Currency.USD
-            RUB_CURRENCY -> Currency.RUB
             else -> Currency.RUB
         }
     }
@@ -29,7 +28,6 @@ class SharedPreferencesWrapper(private val sharedPreferences: SharedPreferences)
             Currency.RUB -> RUB_CURRENCY
         }
         saveDefaultCurrency(defaultCurrency)
-
     }
 
     fun saveDefaultCurrency(defaultCurrency: String) {
@@ -37,5 +35,4 @@ class SharedPreferencesWrapper(private val sharedPreferences: SharedPreferences)
         editor.putString(CURRENCY_TYPE_KEY, defaultCurrency)
         editor.apply()
     }
-
 }
