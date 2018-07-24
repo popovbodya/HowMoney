@@ -1,18 +1,20 @@
 package ru.popov.bodya.howmoney.presentation.ui.account.fragments
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.*
-import android.widget.TextView
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
-import dagger.android.support.AndroidSupportInjection
 import ru.popov.bodya.core.mvp.BaseCoreFragment
 import ru.popov.bodya.howmoney.R
-import ru.popov.bodya.howmoney.domain.global.models.Currency
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.popov.bodya.howmoney.presentation.mvp.account.AccountPresenter
+import javax.inject.Inject
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import dagger.android.support.AndroidSupportInjection
 import ru.popov.bodya.howmoney.presentation.mvp.account.AccountView
+import android.view.MenuInflater
+import android.widget.TextView
+import ru.popov.bodya.howmoney.domain.account.models.Currency
 import java.util.*
 import javax.inject.Inject
 

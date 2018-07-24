@@ -1,7 +1,7 @@
 package ru.popov.bodya.howmoney.data.database.preferences
 
 import android.content.SharedPreferences
-import ru.popov.bodya.howmoney.domain.global.models.Currency
+import ru.popov.bodya.howmoney.domain.account.models.Currency
 
 /**
  *  @author popovbodya

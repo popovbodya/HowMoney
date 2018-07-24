@@ -1,4 +1,6 @@
-package ru.popov.bodya.howmoney.domain.global.models
+package ru.popov.bodya.howmoney.domain.operation.models
+
+import ru.popov.bodya.howmoney.domain.account.models.Currency
 
 /**
  *  @author popovbodya

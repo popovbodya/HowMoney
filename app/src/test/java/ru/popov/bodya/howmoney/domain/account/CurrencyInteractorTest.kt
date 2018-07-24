@@ -4,10 +4,11 @@ import org.hamcrest.core.Is.`is`
 import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
-import ru.popov.bodya.howmoney.domain.global.models.Currency
-import ru.popov.bodya.howmoney.domain.global.models.Operation
-import ru.popov.bodya.howmoney.domain.global.models.OperationType.ADDITION
-import ru.popov.bodya.howmoney.domain.global.models.OperationType.WITHDRAWAL
+import ru.popov.bodya.howmoney.domain.account.interactors.CurrencyInteractor
+import ru.popov.bodya.howmoney.domain.account.models.Currency
+import ru.popov.bodya.howmoney.domain.operation.models.Operation
+import ru.popov.bodya.howmoney.domain.operation.models.OperationType.ADDITION
+import ru.popov.bodya.howmoney.domain.operation.models.OperationType.WITHDRAWAL
 
 /**
  * @author popovbodya
