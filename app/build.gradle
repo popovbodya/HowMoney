@@ -33,8 +33,6 @@ android {
 dependencies {
     // modules
     implementation project(':core')
-    // local
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     // support
     implementation libraries.supportAppCompat
     implementation libraries.supportDesign
