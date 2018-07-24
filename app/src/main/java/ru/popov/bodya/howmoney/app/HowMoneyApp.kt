@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import ru.popov.bodya.howmoney.di.global.AppInjector
+import ru.popov.bodya.howmoney.di.common.AppInjector
 import javax.inject.Inject
 
 /**
