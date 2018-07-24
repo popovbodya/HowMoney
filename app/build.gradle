@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
     compileSdkVersion COMPLIE_SDK_VERSION
@@ -45,24 +46,15 @@ dependencies {
     // rxjava
     implementation libraries.rxJava2
     implementation libraries.rxAndroid
-    implementation libraries.rxBinding
     // moxy
     implementation libraries.moxy
     implementation libraries.moxyAndroid
     implementation libraries.moxyAppCompat
     kapt libraries.moxyCompiler
-    // network
-    implementation libraries.okHttp
-    implementation libraries.retrofit
-    implementation libraries.retrofitGsonConverter
-    implementation libraries.retrofitRxJavaAdapter
     // navigation
     implementation libraries.cicerone
-    // Developer tools
-    debugImplementation libraries.okHttpLoggingInterceptor
     // test
     testImplementation libraries.junit
     testImplementation libraries.hamcrest
     testImplementation libraries.mockito
-    testImplementation libraries.robolectric
 }
