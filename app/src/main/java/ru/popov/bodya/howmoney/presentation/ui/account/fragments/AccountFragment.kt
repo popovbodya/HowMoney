@@ -68,7 +68,7 @@ class AccountFragment : BaseCoreFragment(), AccountView {
         amountRUBTextView.text = String.format(Locale.ENGLISH, getString(R.string.account_amount), amount, Currency.RUB.stringValue)
     }
 
-    override fun showUSDAmount(amount: Long){
+    override fun showUSDAmount(amount: Long) {
         amountUSDTextView.text = String.format(Locale.ENGLISH, getString(R.string.account_amount), amount, Currency.USD.stringValue)
     }
 

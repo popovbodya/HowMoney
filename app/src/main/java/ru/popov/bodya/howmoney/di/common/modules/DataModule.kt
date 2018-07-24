@@ -15,11 +15,11 @@ import ru.popov.bodya.howmoney.data.database.preferences.SharedPreferencesWrappe
 class DataModule {
 
     @Provides
-    internal fun provideSharedPreferencesWrapper(sharedPreferences: SharedPreferences): SharedPreferencesWrapper =
+    fun provideSharedPreferencesWrapper(sharedPreferences: SharedPreferences): SharedPreferencesWrapper =
             SharedPreferencesWrapper(sharedPreferences)
 
     @Provides
-    internal fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
             PreferenceManager.getDefaultSharedPreferences(context)
 
 }

@@ -13,6 +13,6 @@ import ru.popov.bodya.howmoney.di.common.modules.DataModule
 class AccountRepositoryModule {
 
     @Provides
-    internal fun provideRepository(sharedPreferencesWrapper: SharedPreferencesWrapper): CurrencyRepository =
+    fun provideRepository(sharedPreferencesWrapper: SharedPreferencesWrapper): CurrencyRepository =
             CurrencyRepository(sharedPreferencesWrapper)
 }

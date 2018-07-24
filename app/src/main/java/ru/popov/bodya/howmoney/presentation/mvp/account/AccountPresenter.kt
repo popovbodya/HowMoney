@@ -2,6 +2,7 @@ package ru.popov.bodya.howmoney.presentation.mvp.account
 
 import com.arellomobile.mvp.InjectViewState
 import io.reactivex.Observable
+import ru.popov.bodya.core.extensions.connect
 import ru.popov.bodya.core.mvp.AppPresenter
 import ru.popov.bodya.core.rx.RxSchedulersTransformer
 import ru.popov.bodya.howmoney.domain.account.interactors.CurrencyInteractor
@@ -25,15 +26,14 @@ class AccountPresenter @Inject constructor(
         val disposable = Observable.merge(
                 currencyInteractor.getCurrentCurrencyAmount(Currency.RUB).toObservable(),
                 currencyInteractor.getCurrentCurrencyAmount(Currency.USD).toObservable())
-                .compose(rxSchedulersTransformer.getIOToMainTransformer())
+                .compose(rxSchedulersTransformer.ioToMainTransformer())
                 .subscribe {
                     when (it.currency) {
                         Currency.RUB -> viewState.showRUBAmount(it.amount)
                         Currency.USD -> viewState.showUSDAmount(it.amount)
                     }
                 }
-
-        connect(disposable)
+                .connect(compositeDisposable)
     }
 
     fun onAboutMenuItemClick() {

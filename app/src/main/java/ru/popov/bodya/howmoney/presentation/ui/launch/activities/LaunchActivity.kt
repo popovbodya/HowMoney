@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -49,7 +48,6 @@ class LaunchActivity : BaseCoreActivity(), LaunchView, HasSupportFragmentInjecto
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.launch_activity_layout)
-        Log.e("bodya", launchPresenter.toString())
     }
 
     override fun onResume() {
@@ -71,7 +69,8 @@ class LaunchActivity : BaseCoreActivity(), LaunchView, HasSupportFragmentInjecto
     private val navigator = object : SupportAppNavigator(this, supportFragmentManager, R.id.main_container) {
         override fun createActivityIntent(context: Context, screenKey: String, data: Any?): Intent? {
             return when (screenKey) {
-                WRITE_EMAIL_SCREEN -> composeEmail(data as? String ?: getString(R.string.email), getString(R.string.about_email_subject))
+                WRITE_EMAIL_SCREEN -> composeEmail(data as? String
+                        ?: getString(R.string.email), getString(R.string.about_email_subject))
                 else -> null
             }
         }

@@ -5,7 +5,7 @@ import ru.popov.bodya.core.mvp.AppView
 /**
  *  @author popovbodya
  */
-interface AccountView: AppView {
+interface AccountView : AppView {
 
     fun showRUBAmount(amount: Long)
 
