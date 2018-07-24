@@ -14,7 +14,7 @@ import dagger.android.support.AndroidSupportInjection
 import ru.popov.bodya.howmoney.presentation.mvp.account.AccountView
 import android.view.MenuInflater
 import android.widget.TextView
-import ru.popov.bodya.howmoney.domain.global.models.Currency
+import ru.popov.bodya.howmoney.domain.account.models.Currency
 import java.util.*
 
 

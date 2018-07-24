@@ -3,7 +3,7 @@ package ru.popov.bodya.howmoney.data.repositories
 import io.reactivex.Completable
 import io.reactivex.Single
 import ru.popov.bodya.howmoney.data.database.preferences.SharedPreferencesWrapper
-import ru.popov.bodya.howmoney.domain.global.models.Currency
+import ru.popov.bodya.howmoney.domain.account.models.Currency
 
 /**
  *  @author popovbodya
