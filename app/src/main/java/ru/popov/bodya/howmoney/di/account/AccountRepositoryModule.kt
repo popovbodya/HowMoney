@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import ru.popov.bodya.howmoney.data.database.preferences.SharedPreferencesWrapper
 import ru.popov.bodya.howmoney.data.repositories.CurrencyRepository
-import ru.popov.bodya.howmoney.di.global.modules.DataModule
+import ru.popov.bodya.howmoney.di.common.modules.DataModule
 
 /**
  *  @author popovbodya

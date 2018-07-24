@@ -10,6 +10,9 @@ import ru.popov.bodya.howmoney.app.HowMoneyApp
 import ru.popov.bodya.howmoney.di.global.modules.NavigationModule
 import ru.popov.bodya.howmoney.di.global.modules.ResourceModule
 import ru.popov.bodya.howmoney.di.global.modules.RxModule
+import ru.popov.bodya.howmoney.di.common.modules.ResourceModule
+import ru.popov.bodya.howmoney.di.common.modules.NavigationModule
+import ru.popov.bodya.howmoney.di.common.modules.RxModule
 import javax.inject.Singleton
 
 /**

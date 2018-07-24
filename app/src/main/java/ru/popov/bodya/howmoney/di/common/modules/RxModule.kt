@@ -1,4 +1,4 @@
-package ru.popov.bodya.howmoney.di.global.modules
+package ru.popov.bodya.howmoney.di.common.modules
 
 import dagger.Module
 import dagger.Provides

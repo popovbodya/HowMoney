@@ -1,4 +1,4 @@
-package ru.popov.bodya.howmoney.di.global
+package ru.popov.bodya.howmoney.di.common
 
 import ru.popov.bodya.howmoney.app.HowMoneyApp
 
