@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.getkeepsafe.dexcount'
+apply from: "$project.rootDir/secretconfig.gradle"
 
 android {
     compileSdkVersion COMPLIE_SDK_VERSION
@@ -12,24 +14,35 @@ android {
         versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    signingConfigs {
+        config {
+            keyAlias signConfigs.keyAlias
+            keyPassword signConfigs.keyPassword
+            storeFile file(signConfigs.storeFile)
+            storePassword signConfigs.storePassword
         }
     }
-
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
     // modules
     implementation project(':core')
-    // local
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     // support
     implementation libraries.supportAppCompat
     implementation libraries.supportDesign
@@ -45,24 +58,15 @@ dependencies {
     // rxjava
     implementation libraries.rxJava2
     implementation libraries.rxAndroid
-    implementation libraries.rxBinding
     // moxy
     implementation libraries.moxy
     implementation libraries.moxyAndroid
     implementation libraries.moxyAppCompat
     kapt libraries.moxyCompiler
-    // network
-    implementation libraries.okHttp
-    implementation libraries.retrofit
-    implementation libraries.retrofitGsonConverter
-    implementation libraries.retrofitRxJavaAdapter
     // navigation
     implementation libraries.cicerone
-    // Developer tools
-    debugImplementation libraries.okHttpLoggingInterceptor
     // test
     testImplementation libraries.junit
     testImplementation libraries.hamcrest
     testImplementation libraries.mockito
-    testImplementation libraries.robolectric
 }

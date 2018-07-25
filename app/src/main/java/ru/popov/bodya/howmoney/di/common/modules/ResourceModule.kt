@@ -15,6 +15,6 @@ class ResourceModule {
 
     @Singleton
     @Provides
-    internal fun provideResourceManager(@ApplicationContext context: Context) = ResourceManager(context)
+    fun provideResourceManager(@ApplicationContext context: Context) = ResourceManager(context)
 
 }

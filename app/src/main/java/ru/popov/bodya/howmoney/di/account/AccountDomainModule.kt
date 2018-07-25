@@ -2,6 +2,7 @@ package ru.popov.bodya.howmoney.di.account
 
 import dagger.Module
 import dagger.Provides
+import ru.popov.bodya.howmoney.data.repositories.CurrencyRepository
 import ru.popov.bodya.howmoney.domain.account.interactors.CurrencyInteractor
 
 /**
@@ -11,6 +12,6 @@ import ru.popov.bodya.howmoney.domain.account.interactors.CurrencyInteractor
 class AccountDomainModule {
 
     @Provides
-    fun provideAccountInteractor() = CurrencyInteractor()
+    fun provideAccountInteractor(accountRepository: CurrencyRepository) = CurrencyInteractor(accountRepository)
 
 }

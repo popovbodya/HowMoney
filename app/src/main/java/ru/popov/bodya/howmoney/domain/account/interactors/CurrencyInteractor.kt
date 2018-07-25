@@ -1,6 +1,7 @@
 package ru.popov.bodya.howmoney.domain.account.interactors
 
 import io.reactivex.Single
+import ru.popov.bodya.howmoney.data.repositories.CurrencyRepository
 import ru.popov.bodya.howmoney.domain.account.models.Account
 import ru.popov.bodya.howmoney.domain.account.models.Currency
 import ru.popov.bodya.howmoney.domain.operation.models.Operation
@@ -9,10 +10,10 @@ import ru.popov.bodya.howmoney.domain.operation.models.OperationType
 /**
  *  @author popovbodya
  */
-class CurrencyInteractor {
+class CurrencyInteractor(private val accountRepository: CurrencyRepository) {
 
     fun getCurrentCurrencyAmount(currency: Currency): Single<Account> {
-        return Single.fromCallable { getAccount(currency, getStubAmount()) }
+        return Single.fromCallable { getAccount(currency, accountRepository.getAmount()) }
     }
 
     fun calculateBalance(operationList: List<Operation>): Long = operationList
@@ -21,7 +22,7 @@ class CurrencyInteractor {
             .sum()
 
     private fun getAccount(currency: Currency, baseAmountInRubles: Long): Account = when (currency) {
-        Currency.USD -> Account(baseAmountInRubles / getStubExchangeRate(), currency)
+        Currency.USD -> Account(baseAmountInRubles / accountRepository.getExchangeRate(), currency)
         Currency.RUB -> Account(baseAmountInRubles, currency)
     }
 
@@ -31,14 +32,9 @@ class CurrencyInteractor {
             OperationType.ADDITION -> 1L
         }
         amount *= when (operation.currency) {
-            Currency.USD -> operation.amount * getStubExchangeRate()
+            Currency.USD -> operation.amount * accountRepository.getExchangeRate()
             Currency.RUB -> operation.amount
         }
         return amount
     }
-
-    private fun getStubAmount() = 301_456L
-
-    private fun getStubExchangeRate() = 60
-
 }

@@ -1,13 +1,13 @@
 package ru.popov.bodya.howmoney.presentation.mvp.about
 
+import android.content.pm.PackageManager
 import com.arellomobile.mvp.InjectViewState
 import ru.popov.bodya.core.mvp.AppPresenter
 import ru.popov.bodya.core.resources.ResourceManager
-import ru.terrakok.cicerone.Router
-import javax.inject.Inject
-import android.content.pm.PackageManager
 import ru.popov.bodya.howmoney.R
 import ru.popov.bodya.howmoney.presentation.ui.global.Screens.WRITE_EMAIL_SCREEN
+import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 
 /**
