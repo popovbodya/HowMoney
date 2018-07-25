@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--application-->
+    <string name="app_name">HowMoney</string>
+    <string name="email">popovbodya@gmail.com</string>
+    <string name="currency_usd">USD</string>
+    <string name="currency_rub">RUB</string>
+
+    <!--Account screen-->
+    <string name="account_amount">%d %s</string>
+
     <!--Settings screen-->
     <string name="settings_currency_type_section">Currency selection</string>
     <string name="settings_currency_title">Select the default currency</string>

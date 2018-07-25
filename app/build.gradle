@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.getkeepsafe.dexcount'
+apply from: "$project.rootDir/secretconfig.gradle"
 
 android {
     compileSdkVersion COMPLIE_SDK_VERSION
@@ -13,6 +14,14 @@ android {
         versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        config {
+            keyAlias signConfigs.keyAlias
+            keyPassword signConfigs.keyPassword
+            storeFile file(signConfigs.storeFile)
+            storePassword signConfigs.storePassword
+        }
+    }
     buildTypes {
         debug {
             minifyEnabled false
@@ -21,13 +30,14 @@ android {
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
