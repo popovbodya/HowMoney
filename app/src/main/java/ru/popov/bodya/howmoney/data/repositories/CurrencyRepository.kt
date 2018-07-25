@@ -14,4 +14,8 @@ class CurrencyRepository(private val sharedPreferencesWrapper: SharedPreferences
 
     fun saveDefaultCurrencyValue(currency: Currency): Completable =
             Completable.fromAction { sharedPreferencesWrapper.saveDefaultCurrency(currency) }
+
+    fun getExchangeRate() = 60
+
+    fun getAmount() = 301_456L
 }

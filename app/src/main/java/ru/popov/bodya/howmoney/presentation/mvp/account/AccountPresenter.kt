@@ -23,7 +23,7 @@ class AccountPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        val disposable = Observable.merge(
+        Observable.merge(
                 currencyInteractor.getCurrentCurrencyAmount(Currency.RUB).toObservable(),
                 currencyInteractor.getCurrentCurrencyAmount(Currency.USD).toObservable())
                 .compose(rxSchedulersTransformer.ioToMainTransformer())

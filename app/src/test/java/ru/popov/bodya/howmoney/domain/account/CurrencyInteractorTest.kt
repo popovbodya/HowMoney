@@ -4,6 +4,8 @@ import org.hamcrest.core.Is.`is`
 import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mockito.mock
+import ru.popov.bodya.howmoney.data.repositories.CurrencyRepository
 import ru.popov.bodya.howmoney.domain.account.interactors.CurrencyInteractor
 import ru.popov.bodya.howmoney.domain.account.models.Currency
 import ru.popov.bodya.howmoney.domain.operation.models.Operation
@@ -16,10 +18,12 @@ import ru.popov.bodya.howmoney.domain.operation.models.OperationType.WITHDRAWAL
 class CurrencyInteractorTest {
 
     private lateinit var currencyInteractor: CurrencyInteractor
+    private lateinit var currencyRepository: CurrencyRepository
 
     @Before
     fun setUp() {
-        currencyInteractor = CurrencyInteractor()
+        currencyRepository  = mock(CurrencyRepository::class.java)
+        currencyInteractor = CurrencyInteractor(currencyRepository)
     }
 
     @Test
