@@ -15,6 +15,9 @@ ext {
             dagger           : '2.16',
             moxy             : '1.5.3',
             cicerone         : '3.0.0',
+            jaxb             : '2.4.0',
+            okHttp           : '3.11.0',
+            retrofit         : '2.4.0',
             leakCanary       : '1.5.4',
             stetho           : '1.5.0',
             junit            : '4.12',
@@ -24,43 +27,49 @@ ext {
 
     libraries = [
             // support
-            supportAppCompat        : "com.android.support:appcompat-v7:$versions.supportLibs",
-            supportDesign           : "com.android.support:design:$versions.supportLibs",
-            supportPreference       : "com.android.support:preference-v14:$versions.supportLibs",
-            supportConstraintLayout : "com.android.support.constraint:constraint-layout:$versions.supportConstraint",
+            supportAppCompat       : "com.android.support:appcompat-v7:$versions.supportLibs",
+            supportDesign          : "com.android.support:design:$versions.supportLibs",
+            supportPreference      : "com.android.support:preference-v14:$versions.supportLibs",
+            supportConstraintLayout: "com.android.support.constraint:constraint-layout:$versions.supportConstraint",
 
             // kotlin
-            kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
+            kotlin                 : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
 
             // di
-            dagger                  : "com.google.dagger:dagger:$versions.dagger",
-            daggerAndroid           : "com.google.dagger:dagger-android-support:$versions.dagger",
-            daggerAndroidProcessor  : "com.google.dagger:dagger-android-processor:$versions.dagger",
-            daggerCompiler          : "com.google.dagger:dagger-compiler:$versions.dagger",
+            dagger                 : "com.google.dagger:dagger:$versions.dagger",
+            daggerAndroid          : "com.google.dagger:dagger-android-support:$versions.dagger",
+            daggerAndroidProcessor : "com.google.dagger:dagger-android-processor:$versions.dagger",
+            daggerCompiler         : "com.google.dagger:dagger-compiler:$versions.dagger",
 
             // rx
-            rxJava2                 : "io.reactivex.rxjava2:rxjava:$versions.rxJava2",
-            rxAndroid               : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+            rxJava2                : "io.reactivex.rxjava2:rxjava:$versions.rxJava2",
+            rxAndroid              : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
 
             // moxy
-            moxy                    : "com.arello-mobile:moxy:$versions.moxy",
-            moxyAndroid             : "com.arello-mobile:moxy-android:$versions.moxy",
-            moxyAppCompat           : "com.arello-mobile:moxy-app-compat:$versions.moxy",
-            moxyCompiler            : "com.arello-mobile:moxy-compiler:$versions.moxy",
+            moxy                   : "com.arello-mobile:moxy:$versions.moxy",
+            moxyAndroid            : "com.arello-mobile:moxy-android:$versions.moxy",
+            moxyAppCompat          : "com.arello-mobile:moxy-app-compat:$versions.moxy",
+            moxyCompiler           : "com.arello-mobile:moxy-compiler:$versions.moxy",
 
             // navigation
-            cicerone                : "ru.terrakok.cicerone:cicerone:$versions.cicerone",
+            cicerone               : "ru.terrakok.cicerone:cicerone:$versions.cicerone",
+
+            // network
+            okHttp                 : "com.squareup.okhttp3:okhttp:$versions.okHttp",
+            retrofit               : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            jaxb                   : "com.squareup.retrofit2:converter-jaxb:$versions.jaxb",
+            retrofitRxJavaAdapter  : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
 
             // developer tools
-            stetho                  : "com.facebook.stetho:stetho:$versions.stetho",
-            stethoOkHttp            : "com.facebook.stetho:stetho-okhttp3:$versions.stetho",
-            leakCanary              : "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary",
-            leakCanaryNoOp          : "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakCanary",
+            stetho                 : "com.facebook.stetho:stetho:$versions.stetho",
+            stethoOkHttp           : "com.facebook.stetho:stetho-okhttp3:$versions.stetho",
+            leakCanary             : "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary",
+            leakCanaryNoOp         : "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakCanary",
 
             // testing
-            junit                   : "junit:junit:$versions.junit",
-            hamcrest                : "org.hamcrest:hamcrest-all:$versions.hamcrest",
-            mockito                 : "org.mockito:mockito-core:$versions.mockito",
+            junit                  : "junit:junit:$versions.junit",
+            hamcrest               : "org.hamcrest:hamcrest-all:$versions.hamcrest",
+            mockito                : "org.mockito:mockito-core:$versions.mockito",
     ]
 }
 
