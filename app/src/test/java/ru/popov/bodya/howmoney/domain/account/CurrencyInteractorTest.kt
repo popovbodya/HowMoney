@@ -1,6 +1,5 @@
 package ru.popov.bodya.howmoney.domain.account
 
-import io.reactivex.Single
 import org.hamcrest.core.Is.`is`
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -8,7 +7,7 @@ import org.junit.Test
 import org.mockito.Mockito.*
 import ru.popov.bodya.howmoney.data.repositories.CurrencyRepository
 import ru.popov.bodya.howmoney.domain.account.interactors.CurrencyInteractor
-import ru.popov.bodya.howmoney.domain.account.models.Account
+import ru.popov.bodya.howmoney.domain.account.models.Balance
 import ru.popov.bodya.howmoney.domain.account.models.Currency
 import ru.popov.bodya.howmoney.domain.operation.models.Operation
 import ru.popov.bodya.howmoney.domain.operation.models.OperationType.ADDITION
@@ -41,24 +40,24 @@ class CurrencyInteractorTest {
 
     @Test
     fun getCurrencyAmountUSD() {
-        `when`(currencyRepository.getAmount()).thenReturn(301_456L)
+        `when`(currencyRepository.getCurrentBalance()).thenReturn(301_456L)
         `when`(currencyRepository.getExchangeRate()).thenReturn(60)
         currencyInteractor.getCurrentCurrencyAmount(Currency.USD)
                 .test()
-                .assertValue(Account(5024L, Currency.USD))
-        verify(currencyRepository).getAmount()
+                .assertValue(Balance(5024L, Currency.USD))
+        verify(currencyRepository).getCurrentBalance()
         verify(currencyRepository).getExchangeRate()
         verifyNoMoreInteractions(currencyRepository)
     }
 
     @Test
     fun getCurrencyAmountRUB() {
-        `when`(currencyRepository.getAmount()).thenReturn(301_456L)
+        `when`(currencyRepository.getCurrentBalance()).thenReturn(301_456L)
         `when`(currencyRepository.getExchangeRate()).thenReturn(60)
         currencyInteractor.getCurrentCurrencyAmount(Currency.RUB)
                 .test()
-                .assertValue(Account(301_456L, Currency.RUB))
-        verify(currencyRepository).getAmount()
+                .assertValue(Balance(301_456L, Currency.RUB))
+        verify(currencyRepository).getCurrentBalance()
         verifyNoMoreInteractions(currencyRepository)
     }
 

@@ -32,12 +32,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
+        applicationVariants.all { variant ->
+            variant.buildConfigField "String", "FIXER_API_KEY", "\""+apiKeys.fixerIo+"\""
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildToolsVersion '27.0.3'
 }
 
 dependencies {
@@ -65,6 +67,10 @@ dependencies {
     kapt libraries.moxyCompiler
     // navigation
     implementation libraries.cicerone
+    // network
+    implementation libraries.retrofit
+    implementation libraries.retrofitGsonConverter
+    implementation libraries.retrofitRxJavaAdapter
     // test
     testImplementation libraries.junit
     testImplementation libraries.hamcrest

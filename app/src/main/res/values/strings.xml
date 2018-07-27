@@ -5,8 +5,8 @@
     <string name="currency_usd">USD</string>
     <string name="currency_rub">RUB</string>
 
-    <!--Account screen-->
-    <string name="account_amount">%d %s</string>
+    <!--Balance screen-->
+    <string name="account_amount">%.0f %s</string>
 
     <!--Settings screen-->
     <string name="settings_currency_type_section">Выбор валюты</string>

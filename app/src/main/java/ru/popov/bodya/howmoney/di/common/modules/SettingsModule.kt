@@ -12,7 +12,7 @@ import ru.popov.bodya.howmoney.data.database.preferences.SharedPreferencesWrappe
  *  @author popovbodya
  */
 @Module
-class DataModule {
+class SettingsModule {
 
     @Provides
     fun provideSharedPreferencesWrapper(sharedPreferences: SharedPreferences): SharedPreferencesWrapper =

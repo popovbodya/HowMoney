@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import ru.popov.bodya.howmoney.di.account.AccountDomainModule
 import ru.popov.bodya.howmoney.di.account.AccountRepositoryModule
-import ru.popov.bodya.howmoney.di.common.modules.DataModule
+import ru.popov.bodya.howmoney.di.common.modules.SettingsModule
 import ru.popov.bodya.howmoney.presentation.ui.about.fragments.AboutFragment
 import ru.popov.bodya.howmoney.presentation.ui.account.fragments.AccountFragment
 import ru.popov.bodya.howmoney.presentation.ui.settings.fragments.SettingsFragment
@@ -18,7 +18,7 @@ interface LaunchFragmentsInjectorBuilders {
     @ContributesAndroidInjector
     fun provideAboutFragment(): AboutFragment
 
-    @ContributesAndroidInjector(modules = [DataModule::class])
+    @ContributesAndroidInjector(modules = [SettingsModule::class])
     fun provideSettingFragment(): SettingsFragment
 
     @ContributesAndroidInjector(modules = [
