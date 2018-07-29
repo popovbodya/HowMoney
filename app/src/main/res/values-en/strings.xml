@@ -8,7 +8,7 @@
     <string name="currency_rub">RUB</string>
 
     <!--Balance screen-->
-    <string name="account_amount">%.0f %s</string>
+    <string name="account_amount">%.1f %s</string>
 
     <!--Settings screen-->
     <string name="settings_currency_type_section">Currency selection</string>

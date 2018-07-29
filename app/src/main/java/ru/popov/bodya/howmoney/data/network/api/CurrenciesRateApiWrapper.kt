@@ -22,12 +22,11 @@ class CurrenciesRateApiWrapper(private val currenciesRateApi: CurrenciesRateApi)
 
 
     private fun buildQueryMap(): Map<String, String> {
-        val hashMapOf = hashMapOf(
+        return hashMapOf(
                 API_KEY to BuildConfig.FIXER_API_KEY,
                 FROM_CURRENCY_KEY to Currency.USD.stringValue,
                 TO_CURRENCY_KEY to Currency.RUB.stringValue,
                 DEFAULT_AMOUNT_KEY to BASE_AMOUNT
         )
-        return hashMapOf
     }
 }

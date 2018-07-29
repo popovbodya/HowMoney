@@ -10,14 +10,14 @@ import ru.popov.bodya.howmoney.domain.account.models.Currency
 /**
  *  @author popovbodya
  */
-class CurrencyRepository(private val currenciesRateApiWrapper: CurrenciesRateApiWrapper, private val sharedPreferencesWrapper: SharedPreferencesWrapper) {
+class CurrencyRateRepository(private val currenciesRateApiWrapper: CurrenciesRateApiWrapper, private val sharedPreferencesWrapper: SharedPreferencesWrapper) {
 
     fun readDefaultCurrencyValue(): Single<Currency> = Single.fromCallable { sharedPreferencesWrapper.getDefaultCurrencyType() }
 
     fun saveDefaultCurrencyValue(currency: Currency): Completable =
             Completable.fromAction { sharedPreferencesWrapper.saveDefaultCurrency(currency) }
 
-    fun getExchangeRate(): Single<CurrentRateBean> = currenciesRateApiWrapper.getCurrentRate()
+    fun getExchangeRate(): Single<CurrentRateBean> = currenciesRateApiWrapper.getCurrentRate().cache()
 
     fun getCurrentBalance(): Single<Long> = Single.just(301_456L)
 }

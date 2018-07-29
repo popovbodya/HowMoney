@@ -8,11 +8,14 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.popov.bodya.howmoney.data.database.dao.WalletDao
 import ru.popov.bodya.howmoney.data.database.preferences.SharedPreferencesWrapper
+import ru.popov.bodya.howmoney.data.database.sqlite.WalletDaoImpl
 import ru.popov.bodya.howmoney.data.network.api.CurrenciesRateApi
 import ru.popov.bodya.howmoney.data.network.api.CurrenciesRateApi.Companion.FIXER_BASE_URL
 import ru.popov.bodya.howmoney.data.network.api.CurrenciesRateApiWrapper
-import ru.popov.bodya.howmoney.data.repositories.CurrencyRepository
+import ru.popov.bodya.howmoney.data.repositories.CurrencyRateRepository
+import ru.popov.bodya.howmoney.data.repositories.WalletRepository
 import ru.popov.bodya.howmoney.di.common.modules.SettingsModule
 
 /**
@@ -22,8 +25,14 @@ import ru.popov.bodya.howmoney.di.common.modules.SettingsModule
 class AccountRepositoryModule {
 
     @Provides
-    fun provideRepository(currenciesRateApiWrapper: CurrenciesRateApiWrapper, sharedPreferencesWrapper: SharedPreferencesWrapper): CurrencyRepository =
-            CurrencyRepository(currenciesRateApiWrapper, sharedPreferencesWrapper)
+    fun provideWalletRepository(walletDao: WalletDao): WalletRepository = WalletRepository(walletDao)
+
+    @Provides
+    fun provideWalletDao(): WalletDao = WalletDaoImpl()
+
+    @Provides
+    fun provideRepository(currenciesRateApiWrapper: CurrenciesRateApiWrapper, sharedPreferencesWrapper: SharedPreferencesWrapper): CurrencyRateRepository =
+            CurrencyRateRepository(currenciesRateApiWrapper, sharedPreferencesWrapper)
 
     @Provides
     fun provideCurrenciesRateApiWrapper(currenciesRateApi: CurrenciesRateApi): CurrenciesRateApiWrapper =

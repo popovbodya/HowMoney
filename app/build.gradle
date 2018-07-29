@@ -58,7 +58,7 @@ dependencies {
     kapt libraries.daggerAndroidProcessor
     kapt libraries.daggerCompiler
     // rxjava
-    implementation libraries.rxJava2
+    implementation libraries.rxKotlin
     implementation libraries.rxAndroid
     // moxy
     implementation libraries.moxy

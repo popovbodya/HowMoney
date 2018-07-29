@@ -2,8 +2,9 @@ package ru.popov.bodya.howmoney.di.account
 
 import dagger.Module
 import dagger.Provides
-import ru.popov.bodya.howmoney.data.repositories.CurrencyRepository
-import ru.popov.bodya.howmoney.domain.account.interactors.CurrencyInteractor
+import ru.popov.bodya.howmoney.data.repositories.CurrencyRateRepository
+import ru.popov.bodya.howmoney.data.repositories.WalletRepository
+import ru.popov.bodya.howmoney.domain.enrollment.interactors.EnrollmentInteractor
 
 /**
  *  @author popovbodya
@@ -12,6 +13,7 @@ import ru.popov.bodya.howmoney.domain.account.interactors.CurrencyInteractor
 class AccountDomainModule {
 
     @Provides
-    fun provideAccountInteractor(accountRepository: CurrencyRepository) = CurrencyInteractor(accountRepository)
+    fun provideAccountInteractor(currencyRateRepository: CurrencyRateRepository, walletRepository: WalletRepository) =
+            EnrollmentInteractor(currencyRateRepository, walletRepository)
 
 }

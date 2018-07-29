@@ -4,8 +4,8 @@ import com.arellomobile.mvp.InjectViewState
 import io.reactivex.functions.Consumer
 import ru.popov.bodya.core.mvp.AppPresenter
 import ru.popov.bodya.core.rx.RxSchedulersTransformer
-import ru.popov.bodya.howmoney.domain.account.interactors.CurrencyInteractor
-import ru.popov.bodya.howmoney.domain.account.models.Currency
+import ru.popov.bodya.howmoney.domain.enrollment.interactors.EnrollmentInteractor
+import ru.popov.bodya.howmoney.domain.wallet.models.Wallet
 import ru.popov.bodya.howmoney.presentation.ui.global.Screens
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
@@ -15,7 +15,7 @@ import javax.inject.Inject
  */
 @InjectViewState
 class AccountPresenter @Inject constructor(
-        private val currencyInteractor: CurrencyInteractor,
+        private val enrollmentInteractor: EnrollmentInteractor,
         private val rxSchedulersTransformer: RxSchedulersTransformer,
         private val router: Router
 ) : AppPresenter<AccountView>() {
@@ -23,13 +23,14 @@ class AccountPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        currencyInteractor.getCurrentBalance(Currency.RUB)
+        enrollmentInteractor.getEnrollmentOperationList(Wallet.DebitWallet)
                 .compose(rxSchedulersTransformer.ioToMainTransformerSingle())
-                .subscribe(Consumer { viewState.showRUBAmount(it) })
+                .subscribe(Consumer {
+                    enrollmentInteractor.calculateBalanceOfEnrollmentList(it)
+                            .compose(rxSchedulersTransformer.computationToMainTransformerSingle())
+                            .subscribe(Consumer { viewState.showRUBAmount(it) })
+                })
 
-        currencyInteractor.getCurrentBalance(Currency.USD)
-                .compose(rxSchedulersTransformer.ioToMainTransformerSingle())
-                .subscribe(Consumer { viewState.showUSDAmount(it) })
     }
 
     fun onAboutMenuItemClick() {
