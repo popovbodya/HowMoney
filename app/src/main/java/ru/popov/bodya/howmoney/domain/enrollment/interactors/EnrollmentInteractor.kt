@@ -3,13 +3,12 @@ package ru.popov.bodya.howmoney.domain.enrollment.interactors
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.rxkotlin.zipWith
-import ru.popov.bodya.howmoney.data.network.beans.CurrentRateBean
 import ru.popov.bodya.howmoney.data.repositories.CurrencyRateRepository
 import ru.popov.bodya.howmoney.data.repositories.WalletRepository
-import ru.popov.bodya.howmoney.domain.account.models.Currency
 import ru.popov.bodya.howmoney.domain.enrollment.models.EnrollmentCategory
 import ru.popov.bodya.howmoney.domain.enrollment.models.EnrollmentCategoryBalance
 import ru.popov.bodya.howmoney.domain.operation.models.EnrollmentOperation
+import ru.popov.bodya.howmoney.domain.wallet.models.Currency
 import ru.popov.bodya.howmoney.domain.wallet.models.Wallet
 
 /**
@@ -41,8 +40,8 @@ class EnrollmentInteractor(private val currencyRateRepository: CurrencyRateRepos
 
     private fun getOperationAmount(enrollmentOperation: EnrollmentOperation): Observable<Double> {
         return when (enrollmentOperation.currency) {
-            Currency.USD -> currencyRateRepository.getExchangeRate().map { rate: CurrentRateBean ->
-                rate.result * enrollmentOperation.amount
+            Currency.USD -> currencyRateRepository.getCachedExchangeRate().map { rate: Double ->
+                rate * enrollmentOperation.amount
             }.toObservable()
             Currency.RUB -> Observable.just(enrollmentOperation.amount)
         }

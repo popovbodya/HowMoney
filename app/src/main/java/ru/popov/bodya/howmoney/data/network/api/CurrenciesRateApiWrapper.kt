@@ -3,7 +3,7 @@ package ru.popov.bodya.howmoney.data.network.api
 import io.reactivex.Single
 import ru.popov.bodya.howmoney.BuildConfig
 import ru.popov.bodya.howmoney.data.network.beans.CurrentRateBean
-import ru.popov.bodya.howmoney.domain.account.models.Currency
+import ru.popov.bodya.howmoney.domain.wallet.models.Currency
 
 /**
  * @author popovbodya

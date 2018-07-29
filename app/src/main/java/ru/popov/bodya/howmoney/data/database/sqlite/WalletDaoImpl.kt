@@ -1,7 +1,7 @@
 package ru.popov.bodya.howmoney.data.database.sqlite
 
 import ru.popov.bodya.howmoney.data.database.dao.WalletDao
-import ru.popov.bodya.howmoney.domain.account.models.Currency
+import ru.popov.bodya.howmoney.domain.wallet.models.Currency
 import ru.popov.bodya.howmoney.domain.enrollment.models.EnrollmentCategory
 import ru.popov.bodya.howmoney.domain.expense.models.ExpenseCategory
 import ru.popov.bodya.howmoney.domain.operation.models.EnrollmentOperation

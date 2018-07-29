@@ -5,19 +5,15 @@ import io.reactivex.Single
 import ru.popov.bodya.howmoney.data.database.preferences.SharedPreferencesWrapper
 import ru.popov.bodya.howmoney.data.network.api.CurrenciesRateApiWrapper
 import ru.popov.bodya.howmoney.data.network.beans.CurrentRateBean
-import ru.popov.bodya.howmoney.domain.account.models.Currency
+import ru.popov.bodya.howmoney.domain.wallet.models.Currency
 
 /**
  *  @author popovbodya
  */
 class CurrencyRateRepository(private val currenciesRateApiWrapper: CurrenciesRateApiWrapper, private val sharedPreferencesWrapper: SharedPreferencesWrapper) {
 
-    fun readDefaultCurrencyValue(): Single<Currency> = Single.fromCallable { sharedPreferencesWrapper.getDefaultCurrencyType() }
+    fun getExchangeRate(): Single<CurrentRateBean> =
+            currenciesRateApiWrapper.getCurrentRate().doOnSuccess { sharedPreferencesWrapper.saveExchangeRate(it) }
 
-    fun saveDefaultCurrencyValue(currency: Currency): Completable =
-            Completable.fromAction { sharedPreferencesWrapper.saveDefaultCurrency(currency) }
-
-    fun getExchangeRate(): Single<CurrentRateBean> = currenciesRateApiWrapper.getCurrentRate().cache()
-
-    fun getCurrentBalance(): Single<Long> = Single.just(301_456L)
+    fun getCachedExchangeRate(): Single<Double> = Single.fromCallable { sharedPreferencesWrapper.getExchangeRate().toDouble() }
 }

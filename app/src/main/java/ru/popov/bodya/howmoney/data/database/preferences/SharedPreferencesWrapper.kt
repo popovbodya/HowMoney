@@ -1,7 +1,8 @@
 package ru.popov.bodya.howmoney.data.database.preferences
 
 import android.content.SharedPreferences
-import ru.popov.bodya.howmoney.domain.account.models.Currency
+import ru.popov.bodya.howmoney.data.network.beans.CurrentRateBean
+import ru.popov.bodya.howmoney.domain.wallet.models.Currency
 
 /**
  *  @author popovbodya
@@ -9,30 +10,15 @@ import ru.popov.bodya.howmoney.domain.account.models.Currency
 class SharedPreferencesWrapper(private val sharedPreferences: SharedPreferences) {
 
     private companion object {
-        const val CURRENCY_TYPE_KEY = "currency_type"
-        const val USD_CURRENCY = "USD"
-        const val RUB_CURRENCY = "RUB"
+        const val EXCHANGE_RATE_KEY = "currency_type"
+        const val DEFAULT_RATE = "60"
     }
 
-    fun getDefaultCurrencyType(): Currency {
-        val currency: String = sharedPreferences.getString(CURRENCY_TYPE_KEY, USD_CURRENCY)
-        return when (currency) {
-            USD_CURRENCY -> Currency.USD
-            else -> Currency.RUB
-        }
-    }
+    fun getExchangeRate(): String = sharedPreferences.getString(EXCHANGE_RATE_KEY, DEFAULT_RATE)
 
-    fun saveDefaultCurrency(currency: Currency) {
-        val defaultCurrency: String = when (currency) {
-            Currency.USD -> USD_CURRENCY
-            Currency.RUB -> RUB_CURRENCY
-        }
-        saveDefaultCurrency(defaultCurrency)
-    }
-
-    fun saveDefaultCurrency(defaultCurrency: String) {
+    fun saveExchangeRate(currentRateBean: CurrentRateBean) {
         val editor = sharedPreferences.edit()
-        editor.putString(CURRENCY_TYPE_KEY, defaultCurrency)
+        editor.putString(EXCHANGE_RATE_KEY, currentRateBean.result.toString())
         editor.apply()
     }
 }

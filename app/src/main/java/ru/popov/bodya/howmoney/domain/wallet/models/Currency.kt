@@ -1,4 +1,4 @@
-package ru.popov.bodya.howmoney.domain.account.models
+package ru.popov.bodya.howmoney.domain.wallet.models
 
 /**
  *  @author popovbodya

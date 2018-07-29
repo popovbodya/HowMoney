@@ -1,4 +1,4 @@
-package ru.popov.bodya.howmoney.presentation.ui.launch.activities
+package ru.popov.bodya.howmoney.presentation.ui.account.activities
 
 import android.content.Context
 import android.content.Intent
@@ -14,14 +14,14 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import ru.popov.bodya.core.mvp.BaseCoreActivity
 import ru.popov.bodya.howmoney.R
-import ru.popov.bodya.howmoney.presentation.mvp.launch.LaunchPresenter
-import ru.popov.bodya.howmoney.presentation.mvp.launch.LaunchView
+import ru.popov.bodya.howmoney.presentation.mvp.account.AccountPresenter
+import ru.popov.bodya.howmoney.presentation.mvp.account.AccountView
 import ru.popov.bodya.howmoney.presentation.ui.about.fragments.AboutFragment
-import ru.popov.bodya.howmoney.presentation.ui.account.fragments.AccountFragment
-import ru.popov.bodya.howmoney.presentation.ui.global.Screens.ABOUT_SCREEN
-import ru.popov.bodya.howmoney.presentation.ui.global.Screens.ACCOUNT_SCREEN
-import ru.popov.bodya.howmoney.presentation.ui.global.Screens.SETTINGS_SCREEN
-import ru.popov.bodya.howmoney.presentation.ui.global.Screens.WRITE_EMAIL_SCREEN
+import ru.popov.bodya.howmoney.presentation.ui.budget.fragments.BudgetFragment
+import ru.popov.bodya.howmoney.presentation.ui.common.Screens.ABOUT_SCREEN
+import ru.popov.bodya.howmoney.presentation.ui.common.Screens.BUDGET_SCREEN
+import ru.popov.bodya.howmoney.presentation.ui.common.Screens.SETTINGS_SCREEN
+import ru.popov.bodya.howmoney.presentation.ui.common.Screens.WRITE_EMAIL_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.settings.fragments.SettingsFragment
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportAppNavigator
@@ -31,18 +31,18 @@ import javax.inject.Inject
 /**
  *  @author popovbodya
  */
-class LaunchActivity : BaseCoreActivity(), LaunchView, HasSupportFragmentInjector {
+class AccountActivity : BaseCoreActivity(), AccountView, HasSupportFragmentInjector {
 
     @Inject
     @InjectPresenter
-    lateinit var launchPresenter: LaunchPresenter
+    lateinit var accountPresenter: AccountPresenter
     @Inject
     lateinit var navigationHolder: NavigatorHolder
     @Inject
     lateinit var injector: DispatchingAndroidInjector<Fragment>
 
     @ProvidePresenter
-    fun provideOverviewPresenter(): LaunchPresenter = launchPresenter
+    fun provideOverviewPresenter(): AccountPresenter = accountPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -61,7 +61,7 @@ class LaunchActivity : BaseCoreActivity(), LaunchView, HasSupportFragmentInjecto
     }
 
     override fun onBackPressed() {
-        launchPresenter.onBackPressed()
+        accountPresenter.onBackPressed()
     }
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = injector
@@ -77,7 +77,7 @@ class LaunchActivity : BaseCoreActivity(), LaunchView, HasSupportFragmentInjecto
 
         override fun createFragment(screenKey: String, data: Any?): Fragment? {
             return when (screenKey) {
-                ACCOUNT_SCREEN -> AccountFragment()
+                BUDGET_SCREEN -> BudgetFragment()
                 SETTINGS_SCREEN -> SettingsFragment()
                 ABOUT_SCREEN -> AboutFragment()
                 else -> null
@@ -85,7 +85,7 @@ class LaunchActivity : BaseCoreActivity(), LaunchView, HasSupportFragmentInjecto
         }
 
         override fun showSystemMessage(message: String) {
-            Toast.makeText(this@LaunchActivity, message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@AccountActivity, message, Toast.LENGTH_SHORT).show()
         }
 
         override fun exit() {

@@ -7,7 +7,5 @@ import ru.popov.bodya.core.mvp.AppView
  */
 interface AccountView : AppView {
 
-    fun showRUBAmount(amount: Double)
 
-    fun showUSDAmount(amount: Double)
 }

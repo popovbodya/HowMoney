@@ -1,6 +1,6 @@
 package ru.popov.bodya.howmoney.domain.operation.models
 
-import ru.popov.bodya.howmoney.domain.account.models.Currency
+import ru.popov.bodya.howmoney.domain.wallet.models.Currency
 import ru.popov.bodya.howmoney.domain.enrollment.models.EnrollmentCategory
 import ru.popov.bodya.howmoney.domain.expense.models.ExpenseCategory
 
