@@ -6,4 +6,4 @@ import com.arellomobile.mvp.MvpAppCompatActivity
  * @author popovbodya
  */
 
-abstract class BaseCoreActivity : MvpAppCompatActivity()
+abstract class AppActivity : MvpAppCompatActivity()

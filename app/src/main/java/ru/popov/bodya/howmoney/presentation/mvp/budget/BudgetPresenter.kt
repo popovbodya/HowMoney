@@ -42,6 +42,14 @@ class BudgetPresenter @Inject constructor(
                 })
     }
 
+    fun onEnrollmentBlockClick() {
+        router.navigateTo(Screens.ENROLLMENT_SCREEN)
+    }
+
+    fun onExpenseBlockClick() {
+        router.navigateTo(Screens.EXPENSE_SCREEN)
+    }
+
     fun onAboutMenuItemClick() {
         router.navigateTo(Screens.ABOUT_SCREEN)
     }
@@ -49,5 +57,4 @@ class BudgetPresenter @Inject constructor(
     fun onSettingsMenuItemClick() {
         router.navigateTo(Screens.SETTINGS_SCREEN)
     }
-
 }

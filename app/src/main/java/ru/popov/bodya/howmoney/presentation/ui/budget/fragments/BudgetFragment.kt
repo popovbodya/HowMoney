@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
-import ru.popov.bodya.core.mvp.BaseCoreFragment
+import ru.popov.bodya.core.mvp.AppFragment
 import ru.popov.bodya.howmoney.R
 import ru.popov.bodya.howmoney.domain.wallet.models.Currency
 import ru.popov.bodya.howmoney.presentation.mvp.budget.BudgetPresenter
@@ -20,14 +20,14 @@ import javax.inject.Inject
 /**
  *  @author popovbodya
  */
-class BudgetFragment : BaseCoreFragment(), BudgetView {
+class BudgetFragment : AppFragment(), BudgetView {
 
     @Inject
     @InjectPresenter
     lateinit var budgetPresenter: BudgetPresenter
 
-    private lateinit var amountRUBTextView: TextView
-    private lateinit var amountUSDTextView: TextView
+    private lateinit var enrollmentTextView: TextView
+    private lateinit var expenseTextView: TextView
 
     @ProvidePresenter
     fun provideAccountPresenter(): BudgetPresenter = budgetPresenter
@@ -64,16 +64,18 @@ class BudgetFragment : BaseCoreFragment(), BudgetView {
     }
 
     override fun showEnrollmentBalance(amount: Double) {
-        amountRUBTextView.text = String.format(Locale.ENGLISH, getString(R.string.account_amount), amount, Currency.RUB.stringValue)
+        enrollmentTextView.text = String.format(Locale.ENGLISH, getString(R.string.account_amount), amount, Currency.RUB.stringValue)
     }
 
     override fun showExpenseBalance(amount: Double) {
-        amountUSDTextView.text = String.format(Locale.ENGLISH, getString(R.string.account_amount), amount, Currency.RUB.stringValue)
+        expenseTextView.text = String.format(Locale.ENGLISH, getString(R.string.account_amount), amount, Currency.RUB.stringValue)
     }
 
     private fun initViews(parentView: View) {
-        amountRUBTextView = parentView.findViewById(R.id.amount_rub_text_view)
-        amountUSDTextView = parentView.findViewById(R.id.amount_usd_text_view)
+        enrollmentTextView = parentView.findViewById(R.id.enrollment_text_view)
+        enrollmentTextView.setOnClickListener { budgetPresenter.onEnrollmentBlockClick() }
+        expenseTextView = parentView.findViewById(R.id.expense_text_view)
+        expenseTextView.setOnClickListener { budgetPresenter.onExpenseBlockClick() }
         initToolbar(parentView)
     }
 

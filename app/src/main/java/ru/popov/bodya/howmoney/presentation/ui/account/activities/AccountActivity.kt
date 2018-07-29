@@ -12,7 +12,7 @@ import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import ru.popov.bodya.core.mvp.BaseCoreActivity
+import ru.popov.bodya.core.mvp.AppActivity
 import ru.popov.bodya.howmoney.R
 import ru.popov.bodya.howmoney.presentation.mvp.account.AccountPresenter
 import ru.popov.bodya.howmoney.presentation.mvp.account.AccountView
@@ -20,8 +20,12 @@ import ru.popov.bodya.howmoney.presentation.ui.about.fragments.AboutFragment
 import ru.popov.bodya.howmoney.presentation.ui.budget.fragments.BudgetFragment
 import ru.popov.bodya.howmoney.presentation.ui.common.Screens.ABOUT_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.common.Screens.BUDGET_SCREEN
+import ru.popov.bodya.howmoney.presentation.ui.common.Screens.ENROLLMENT_SCREEN
+import ru.popov.bodya.howmoney.presentation.ui.common.Screens.EXPENSE_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.common.Screens.SETTINGS_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.common.Screens.WRITE_EMAIL_SCREEN
+import ru.popov.bodya.howmoney.presentation.ui.enrollment.EnrollmentFragment
+import ru.popov.bodya.howmoney.presentation.ui.expense.ExpenseFragment
 import ru.popov.bodya.howmoney.presentation.ui.settings.fragments.SettingsFragment
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportAppNavigator
@@ -31,7 +35,7 @@ import javax.inject.Inject
 /**
  *  @author popovbodya
  */
-class AccountActivity : BaseCoreActivity(), AccountView, HasSupportFragmentInjector {
+class AccountActivity : AppActivity(), AccountView, HasSupportFragmentInjector {
 
     @Inject
     @InjectPresenter
@@ -78,6 +82,8 @@ class AccountActivity : BaseCoreActivity(), AccountView, HasSupportFragmentInjec
         override fun createFragment(screenKey: String, data: Any?): Fragment? {
             return when (screenKey) {
                 BUDGET_SCREEN -> BudgetFragment()
+                ENROLLMENT_SCREEN -> EnrollmentFragment()
+                EXPENSE_SCREEN -> ExpenseFragment()
                 SETTINGS_SCREEN -> SettingsFragment()
                 ABOUT_SCREEN -> AboutFragment()
                 else -> null

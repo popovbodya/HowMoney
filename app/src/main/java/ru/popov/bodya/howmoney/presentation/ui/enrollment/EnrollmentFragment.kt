@@ -1,4 +1,4 @@
-package ru.popov.bodya.howmoney.presentation.ui.about.fragments
+package ru.popov.bodya.howmoney.presentation.ui.enrollment
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,30 +7,26 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
 import ru.popov.bodya.core.mvp.AppFragment
 import ru.popov.bodya.howmoney.R
-import ru.popov.bodya.howmoney.presentation.mvp.about.AboutPresenter
-import ru.popov.bodya.howmoney.presentation.mvp.about.AboutView
+import ru.popov.bodya.howmoney.presentation.mvp.enrollment.EnrollmentPresenter
+import ru.popov.bodya.howmoney.presentation.mvp.enrollment.EnrollmentView
 import javax.inject.Inject
-
 
 /**
  *  @author popovbodya
  */
-class AboutFragment : AppFragment(), AboutView {
+class EnrollmentFragment : AppFragment(), EnrollmentView {
 
     @Inject
     @InjectPresenter
-    lateinit var aboutPresenter: AboutPresenter
-
-    private lateinit var appVersionTextView: TextView
+    lateinit var enrollmentPresenter: EnrollmentPresenter
 
     @ProvidePresenter
-    fun provideAboutPresenter(): AboutPresenter = aboutPresenter
+    fun providePresenter(): EnrollmentPresenter = enrollmentPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -38,30 +34,23 @@ class AboutFragment : AppFragment(), AboutView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.about_fragment_layout, container, false)
+        val parentView = inflater.inflate(R.layout.enrollment_fragment_layout, container, false)
         setHasOptionsMenu(true)
-        initViews(view)
-        return view
+        initViews(parentView)
+        return parentView
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                aboutPresenter.onUpButtonPressed()
+                enrollmentPresenter.onUpButtonPressed()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    override fun showAppVersion(version: String) {
-        appVersionTextView.text = version
-    }
-
     private fun initViews(parentView: View) {
-        appVersionTextView = parentView.findViewById(R.id.app_version_text_view)
-        val emailTextView: TextView = parentView.findViewById(R.id.author_email_text_view)
-        emailTextView.setOnClickListener { aboutPresenter.onEmailClick() }
         initToolbar(parentView)
     }
 

@@ -5,4 +5,4 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 /**
  * @author popovbodya
  */
-abstract class BaseCoreFragment : MvpAppCompatFragment()
+abstract class AppFragment : MvpAppCompatFragment()
