@@ -16,6 +16,7 @@ ext {
             moxy             : '1.5.3',
             cicerone         : '3.0.0',
             retrofit         : '2.4.0',
+            decoview         : '1.2',
             leakCanary       : '1.5.4',
             stetho           : '1.5.0',
             junit            : '4.12',
@@ -40,7 +41,7 @@ ext {
             daggerCompiler         : "com.google.dagger:dagger-compiler:$versions.dagger",
 
             // rx
-            rxKotlin                : "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin",
+            rxKotlin               : "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin",
             rxAndroid              : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
 
             // moxy
@@ -56,6 +57,9 @@ ext {
             retrofit               : "com.squareup.retrofit2:retrofit:$versions.retrofit",
             retrofitGsonConverter  : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
             retrofitRxJavaAdapter  : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+
+            // custom views
+            decoview               : "com.github.bmarrdev:android-DecoView-charting:v$versions.decoview",
 
             // developer tools
             stetho                 : "com.facebook.stetho:stetho:$versions.stetho",

@@ -71,6 +71,8 @@ dependencies {
     implementation libraries.retrofit
     implementation libraries.retrofitGsonConverter
     implementation libraries.retrofitRxJavaAdapter
+    // custom views
+    implementation libraries.decoview
     // test
     testImplementation libraries.junit
     testImplementation libraries.hamcrest

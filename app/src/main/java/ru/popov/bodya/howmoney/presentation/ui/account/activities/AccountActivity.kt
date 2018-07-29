@@ -14,6 +14,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import ru.popov.bodya.core.mvp.AppActivity
 import ru.popov.bodya.howmoney.R
+import ru.popov.bodya.howmoney.domain.wallet.models.Wallet
 import ru.popov.bodya.howmoney.presentation.mvp.account.AccountPresenter
 import ru.popov.bodya.howmoney.presentation.mvp.account.AccountView
 import ru.popov.bodya.howmoney.presentation.ui.about.fragments.AboutFragment
@@ -82,8 +83,8 @@ class AccountActivity : AppActivity(), AccountView, HasSupportFragmentInjector {
         override fun createFragment(screenKey: String, data: Any?): Fragment? {
             return when (screenKey) {
                 BUDGET_SCREEN -> BudgetFragment()
-                ENROLLMENT_SCREEN -> EnrollmentFragment()
-                EXPENSE_SCREEN -> ExpenseFragment()
+                ENROLLMENT_SCREEN -> EnrollmentFragment.newInstance(data as Wallet)
+                EXPENSE_SCREEN -> ExpenseFragment.newInstance(data as Wallet)
                 SETTINGS_SCREEN -> SettingsFragment()
                 ABOUT_SCREEN -> AboutFragment()
                 else -> null

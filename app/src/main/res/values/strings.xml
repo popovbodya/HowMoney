@@ -17,9 +17,12 @@
 
     <!--Enrollment screen-->
     <string name="enrollment_toolbar_title">Доходы</string>
+    <string name="enrollment_diagram_title">За все время</string>
 
     <!--Expense screen-->
     <string name="expense_toolbar_title">Расходы</string>
+    <string name="expense_diagram_title">За все время</string>
+
 
 
     <!--Settings screen-->
@@ -27,7 +30,6 @@
     <string name="settings_currency_title">Выберите стандартную валюту для показа</string>
     <string name="settings_default_value">USD</string>
     <string name="settings_currency_key">settings_currency_key</string>
-
 
 
     <!--About screen-->

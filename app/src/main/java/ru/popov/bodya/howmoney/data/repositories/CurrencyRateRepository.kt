@@ -15,5 +15,5 @@ class CurrencyRateRepository(private val currenciesRateApiWrapper: CurrenciesRat
     fun getExchangeRate(): Single<CurrentRateBean> =
             currenciesRateApiWrapper.getCurrentRate().doOnSuccess { sharedPreferencesWrapper.saveExchangeRate(it) }
 
-    fun getCachedExchangeRate(): Single<Double> = Single.fromCallable { sharedPreferencesWrapper.getExchangeRate().toDouble() }
+    fun getCachedExchangeRate(): Double = sharedPreferencesWrapper.getExchangeRate().toDouble()
 }

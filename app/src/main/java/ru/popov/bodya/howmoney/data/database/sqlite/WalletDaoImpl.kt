@@ -37,18 +37,18 @@ class WalletDaoImpl : WalletDao {
     }
 
     private fun createStubEnrollmentOperationList(): List<EnrollmentOperation> = listOf(
-            EnrollmentOperation(1.0, EnrollmentCategory.Transfer, Currency.USD),
-            EnrollmentOperation(250.0, EnrollmentCategory.Cache, Currency.RUB),
+            EnrollmentOperation(20.0, EnrollmentCategory.Transfer, Currency.USD),
+            EnrollmentOperation(2500.0, EnrollmentCategory.Cache, Currency.RUB),
             EnrollmentOperation(5000.0, EnrollmentCategory.Salary, Currency.RUB),
-            EnrollmentOperation(2.0, EnrollmentCategory.Transfer, Currency.USD)
+            EnrollmentOperation(20.0, EnrollmentCategory.Transfer, Currency.USD)
     )
 
     private fun createStubExpenseOperationList(): List<ExpenseOperation> = listOf(
-            ExpenseOperation(5.0, ExpenseCategory.Supermarket, Currency.USD),
-            ExpenseOperation(25.0, ExpenseCategory.Transport, Currency.USD),
+            ExpenseOperation(400.0, ExpenseCategory.Supermarket, Currency.USD),
+            ExpenseOperation(250.0, ExpenseCategory.Transport, Currency.USD),
             ExpenseOperation(300.0, ExpenseCategory.Clothing, Currency.USD),
-            ExpenseOperation(4000.0, ExpenseCategory.Health, Currency.RUB),
-            ExpenseOperation(1000.0, ExpenseCategory.Restaurant, Currency.RUB)
+            ExpenseOperation(20000.0, ExpenseCategory.Health, Currency.RUB),
+            ExpenseOperation(10000.0, ExpenseCategory.Restaurant, Currency.RUB)
     )
 }
 

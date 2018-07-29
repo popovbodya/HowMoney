@@ -10,6 +10,9 @@ import ru.popov.bodya.howmoney.domain.enrollment.models.EnrollmentCategoryBalanc
 import ru.popov.bodya.howmoney.domain.operation.models.EnrollmentOperation
 import ru.popov.bodya.howmoney.domain.wallet.models.Currency
 import ru.popov.bodya.howmoney.domain.wallet.models.Wallet
+import java.util.*
+import java.util.concurrent.Callable
+import java.util.function.BiFunction
 
 /**
  *  @author popovbodya
@@ -17,33 +20,32 @@ import ru.popov.bodya.howmoney.domain.wallet.models.Wallet
 class EnrollmentInteractor(private val currencyRateRepository: CurrencyRateRepository,
                            private val walletRepository: WalletRepository) {
 
-    fun calculateBalanceOfEnrollmentList(categoryList: List<EnrollmentCategoryBalance>): Single<Double> {
-        return Observable.fromIterable(categoryList)
-                .reduce(0.0) { acc, balance -> acc + balance.amount }
+    fun calculateFinalEnrollmentBalance(enrollmentCategoryMap: Map<EnrollmentCategory, Double>): Single<Double> {
+        return Observable.fromIterable(enrollmentCategoryMap.values)
+                .reduce(0.0) { acc, balance -> acc + balance }
     }
 
-    fun getEnrollmentOperationList(wallet: Wallet): Single<List<EnrollmentCategoryBalance>> {
+    fun getEnrollmentCategoryMap(wallet: Wallet): Single<Map<EnrollmentCategory, Double>> {
+        return Single.fromCallable { walletRepository.getEnrollmentOperationList(wallet) }.map { getCategoryBalanceMap(it) }
+    }
 
-        val operations = Observable.fromIterable(walletRepository.getEnrollmentOperationList(wallet))
-        val categoryGroupsKeys: Observable<EnrollmentCategory> = operations.map { it.enrollmentCategory }
-        val categoryAmounts: Observable<Double> = operations.flatMap { getOperationAmount(it) }
-
-        return categoryAmounts.zipWith(categoryGroupsKeys) { amount, key ->
-            Observable.just(EnrollmentCategoryBalance(key, amount))
-                    .groupBy { it.enrollmentCategory }
-                    .flatMap { group -> group.reduce(0.0) { acc, balance -> acc + balance.amount }.toObservable() }
-                    .map { EnrollmentCategoryBalance(key, it) }
+    private fun getCategoryBalanceMap(enrollmentOperationList: List<EnrollmentOperation>): Map<EnrollmentCategory, Double> {
+        val categoryBalanceMap = EnumMap<EnrollmentCategory, Double>(EnrollmentCategory::class.java)
+        for (operation in enrollmentOperationList) {
+            val currentAmount = categoryBalanceMap[operation.enrollmentCategory]
+            if (currentAmount == null) {
+                categoryBalanceMap[operation.enrollmentCategory] = getOperationAmount(operation)
+            } else {
+                categoryBalanceMap[operation.enrollmentCategory] = currentAmount + getOperationAmount(operation)
+            }
         }
-                .flatMap { it }
-                .toList()
+        return categoryBalanceMap
     }
 
-    private fun getOperationAmount(enrollmentOperation: EnrollmentOperation): Observable<Double> {
+    private fun getOperationAmount(enrollmentOperation: EnrollmentOperation): Double {
         return when (enrollmentOperation.currency) {
-            Currency.USD -> currencyRateRepository.getCachedExchangeRate().map { rate: Double ->
-                rate * enrollmentOperation.amount
-            }.toObservable()
-            Currency.RUB -> Observable.just(enrollmentOperation.amount)
+            Currency.USD -> currencyRateRepository.getCachedExchangeRate() * enrollmentOperation.amount
+            Currency.RUB -> enrollmentOperation.amount
         }
     }
 

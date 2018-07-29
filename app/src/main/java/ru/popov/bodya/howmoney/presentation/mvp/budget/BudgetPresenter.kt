@@ -2,6 +2,7 @@ package ru.popov.bodya.howmoney.presentation.mvp.budget
 
 import com.arellomobile.mvp.InjectViewState
 import io.reactivex.functions.Consumer
+import ru.popov.bodya.core.extensions.connect
 import ru.popov.bodya.core.mvp.AppPresenter
 import ru.popov.bodya.core.rx.RxSchedulersTransformer
 import ru.popov.bodya.howmoney.domain.enrollment.interactors.EnrollmentInteractor
@@ -22,32 +23,41 @@ class BudgetPresenter @Inject constructor(
         private val router: Router
 ) : AppPresenter<BudgetView>() {
 
+    private var currentWallet: Wallet = Wallet.DebitWallet
+
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        enrollmentInteractor.getEnrollmentOperationList(Wallet.DebitWallet)
+        enrollmentInteractor.getEnrollmentCategoryMap(Wallet.DebitWallet)
                 .compose(rxSchedulersTransformer.ioToMainTransformerSingle())
                 .subscribe(Consumer {
-                    enrollmentInteractor.calculateBalanceOfEnrollmentList(it)
+                    enrollmentInteractor.calculateFinalEnrollmentBalance(it)
                             .compose(rxSchedulersTransformer.computationToMainTransformerSingle())
                             .subscribe(Consumer { viewState.showEnrollmentBalance(it) })
                 })
+                .connect(compositeDisposable)
 
-        expenseInteractor.getExpenseOperationList(Wallet.CreditWallet)
+        expenseInteractor.getExpenseCategoryMap(Wallet.CreditWallet)
                 .compose(rxSchedulersTransformer.ioToMainTransformerSingle())
                 .subscribe(Consumer {
-                    expenseInteractor.calculateBalanceOfExpenseList(it)
+                    expenseInteractor.calculateFinalExpenseBalance(it)
                             .compose(rxSchedulersTransformer.computationToMainTransformerSingle())
                             .subscribe(Consumer { viewState.showExpenseBalance(it) })
                 })
+                .connect(compositeDisposable)
+
+    }
+
+    fun onWalletChanged(wallet: Wallet) {
+        currentWallet = wallet
     }
 
     fun onEnrollmentBlockClick() {
-        router.navigateTo(Screens.ENROLLMENT_SCREEN)
+        router.navigateTo(Screens.ENROLLMENT_SCREEN, currentWallet)
     }
 
     fun onExpenseBlockClick() {
-        router.navigateTo(Screens.EXPENSE_SCREEN)
+        router.navigateTo(Screens.EXPENSE_SCREEN, currentWallet)
     }
 
     fun onAboutMenuItemClick() {
