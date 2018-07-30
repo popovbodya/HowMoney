@@ -31,6 +31,21 @@ class WalletRepository(private val walletDao: WalletDao) {
             CreditWallet -> walletDao.getCreditWalletExpenseOperationList()
             CacheWallet -> walletDao.getCacheWalletExpenseOperationList()
         }
+    }
 
+    fun saveEnrollmentOperation(wallet: Wallet, enrollmentOperation: EnrollmentOperation) {
+        when (wallet) {
+            DebitWallet -> walletDao.saveDebitWalletEnrollOperation(enrollmentOperation)
+            CreditWallet -> walletDao.saveCreditWalletEnrollOperation(enrollmentOperation)
+            CacheWallet -> walletDao.saveCacheWalletEnrollOperation(enrollmentOperation)
+        }
+    }
+
+    fun saveExpenseOperation(wallet: Wallet, expenseOperation: ExpenseOperation) {
+        when (wallet) {
+            DebitWallet -> walletDao.saveDebitWalletExpenseOperation(expenseOperation)
+            CreditWallet -> walletDao.saveCacheWalletExpenseOperation(expenseOperation)
+            CacheWallet -> walletDao.saveCacheWalletExpenseOperation(expenseOperation)
+        }
     }
 }

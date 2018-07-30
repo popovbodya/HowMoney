@@ -23,10 +23,12 @@ import ru.popov.bodya.howmoney.presentation.ui.common.Screens.ABOUT_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.common.Screens.BUDGET_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.common.Screens.ENROLLMENT_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.common.Screens.EXPENSE_SCREEN
+import ru.popov.bodya.howmoney.presentation.ui.common.Screens.REPLENISHMENT_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.common.Screens.SETTINGS_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.common.Screens.WRITE_EMAIL_SCREEN
 import ru.popov.bodya.howmoney.presentation.ui.enrollment.EnrollmentFragment
 import ru.popov.bodya.howmoney.presentation.ui.expense.ExpenseFragment
+import ru.popov.bodya.howmoney.presentation.ui.replenishment.fragments.ReplenishmentFragment
 import ru.popov.bodya.howmoney.presentation.ui.settings.fragments.SettingsFragment
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportAppNavigator
@@ -85,6 +87,7 @@ class AccountActivity : AppActivity(), AccountView, HasSupportFragmentInjector {
                 BUDGET_SCREEN -> BudgetFragment()
                 ENROLLMENT_SCREEN -> EnrollmentFragment.newInstance(data as Wallet)
                 EXPENSE_SCREEN -> ExpenseFragment.newInstance(data as Wallet)
+                REPLENISHMENT_SCREEN -> ReplenishmentFragment.newInstance(data as Wallet)
                 SETTINGS_SCREEN -> SettingsFragment()
                 ABOUT_SCREEN -> AboutFragment()
                 else -> null

@@ -1,6 +1,7 @@
 package ru.popov.bodya.howmoney.presentation.ui.budget.fragments
 
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.*
@@ -11,6 +12,7 @@ import dagger.android.support.AndroidSupportInjection
 import ru.popov.bodya.core.mvp.AppFragment
 import ru.popov.bodya.howmoney.R
 import ru.popov.bodya.howmoney.domain.wallet.models.Currency
+import ru.popov.bodya.howmoney.domain.wallet.models.Wallet
 import ru.popov.bodya.howmoney.presentation.mvp.budget.BudgetPresenter
 import ru.popov.bodya.howmoney.presentation.mvp.budget.BudgetView
 import java.util.*
@@ -28,6 +30,7 @@ class BudgetFragment : AppFragment(), BudgetView {
 
     private lateinit var enrollmentTextView: TextView
     private lateinit var expenseTextView: TextView
+    private lateinit var replenishmentFab: FloatingActionButton
 
     @ProvidePresenter
     fun provideAccountPresenter(): BudgetPresenter = budgetPresenter
@@ -51,6 +54,18 @@ class BudgetFragment : AppFragment(), BudgetView {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.debit -> {
+                budgetPresenter.onWalletChanged(Wallet.DebitWallet)
+                return true
+            }
+            R.id.credit -> {
+                budgetPresenter.onWalletChanged(Wallet.CreditWallet)
+                return true
+            }
+            R.id.cache -> {
+                budgetPresenter.onWalletChanged(Wallet.CacheWallet)
+                return true
+            }
             R.id.settings -> {
                 budgetPresenter.onSettingsMenuItemClick()
                 true
@@ -76,6 +91,8 @@ class BudgetFragment : AppFragment(), BudgetView {
         enrollmentTextView.setOnClickListener { budgetPresenter.onEnrollmentBlockClick() }
         expenseTextView = parentView.findViewById(R.id.expense_text_view)
         expenseTextView.setOnClickListener { budgetPresenter.onExpenseBlockClick() }
+        replenishmentFab = parentView.findViewById(R.id.add_replenishment_fab)
+        replenishmentFab.setOnClickListener { budgetPresenter.onAddReplenishmentFabClick() }
         initToolbar(parentView)
     }
 

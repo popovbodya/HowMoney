@@ -13,7 +13,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.hookedonplay.decoviewlib.DecoView
 import com.hookedonplay.decoviewlib.charts.SeriesItem
-import com.hookedonplay.decoviewlib.charts.SeriesLabel
 import com.hookedonplay.decoviewlib.events.DecoEvent
 import dagger.android.support.AndroidSupportInjection
 import ru.popov.bodya.core.mvp.AppFragment
@@ -31,7 +30,7 @@ import javax.inject.Inject
 class EnrollmentFragment : AppFragment(), EnrollmentView {
 
     companion object {
-        const val WALLET_KEY = "walletKey"
+        private const val WALLET_KEY = "walletKey"
 
         fun newInstance(wallet: Wallet): EnrollmentFragment {
             val bundle = Bundle()

@@ -13,6 +13,10 @@
     <!--Account screen-->
     <string name="account_menu_settings">Настройки</string>
     <string name="account_menu_about">О приложении</string>
+    <string name="account_menu_wallet">Кошелек</string>
+    <string name="account_submenu_wallet_debit">Дебетовые карты</string>
+    <string name="account_submenu_wallet_credit">Кредитные карты</string>
+    <string name="account_submenu_wallet_cache">Наличные</string>
     <string name="account_amount">%.1f %s</string>
 
     <!--Enrollment screen-->
@@ -23,6 +27,12 @@
     <string name="expense_toolbar_title">Расходы</string>
     <string name="expense_diagram_title">За все время</string>
 
+    <!--Replenishment screen-->
+    <string name="replenishment_toolbar_title">Добавление значения в кошелек</string>
+    <string name="replenishment_enrollment_toolbar_arg">дохода"</string>
+    <string name="replenishment_expense_toolbar_arg">расхода"</string>
+    <string name="replenishment_amount_edit_text_hint">Количество"</string>
+    <string name="replenishment_add_button_text">Добавить"</string>
 
 
     <!--Settings screen-->

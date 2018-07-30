@@ -45,7 +45,10 @@ class BudgetPresenter @Inject constructor(
                             .subscribe(Consumer { viewState.showExpenseBalance(it) })
                 })
                 .connect(compositeDisposable)
+    }
 
+    fun onAddReplenishmentFabClick() {
+        router.navigateTo(Screens.REPLENISHMENT_SCREEN, currentWallet)
     }
 
     fun onWalletChanged(wallet: Wallet) {

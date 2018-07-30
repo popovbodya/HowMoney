@@ -7,6 +7,7 @@ import ru.popov.bodya.howmoney.presentation.ui.about.fragments.AboutFragment
 import ru.popov.bodya.howmoney.presentation.ui.budget.fragments.BudgetFragment
 import ru.popov.bodya.howmoney.presentation.ui.enrollment.EnrollmentFragment
 import ru.popov.bodya.howmoney.presentation.ui.expense.ExpenseFragment
+import ru.popov.bodya.howmoney.presentation.ui.replenishment.fragments.ReplenishmentFragment
 import ru.popov.bodya.howmoney.presentation.ui.settings.fragments.SettingsFragment
 
 /**
@@ -29,4 +30,7 @@ interface AccountFragmentsInjectorBuilders {
 
     @ContributesAndroidInjector
     fun provideExpenseFragment(): ExpenseFragment
+
+    @ContributesAndroidInjector
+    fun provideReplenishmentFragment(): ReplenishmentFragment
 }

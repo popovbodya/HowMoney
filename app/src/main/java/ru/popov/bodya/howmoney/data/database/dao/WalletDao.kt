@@ -21,4 +21,15 @@ interface WalletDao {
 
     fun getCacheWalletExpenseOperationList(): List<ExpenseOperation>
 
+    fun saveDebitWalletEnrollOperation(enrollmentOperation: EnrollmentOperation)
+
+    fun saveDebitWalletExpenseOperation(expenseOperation: ExpenseOperation)
+
+    fun saveCreditWalletEnrollOperation(enrollmentOperation: EnrollmentOperation)
+
+    fun saveCreditWalletExpenseOperation(expenseOperation: ExpenseOperation)
+
+    fun saveCacheWalletEnrollOperation(enrollmentOperation: EnrollmentOperation)
+
+    fun saveCacheWalletExpenseOperation(expenseOperation: ExpenseOperation)
 }

@@ -12,38 +12,70 @@ import ru.popov.bodya.howmoney.domain.operation.models.ExpenseOperation
  */
 class WalletDaoImpl : WalletDao {
 
+    private val enrollmentOperationList: MutableList<EnrollmentOperation>
+    private val expenseOperationList: MutableList<ExpenseOperation>
+
+    init {
+        enrollmentOperationList = createStubEnrollmentOperationList()
+        expenseOperationList = createStubExpenseOperationList()
+    }
+
     override fun getDebitWalletEnrollmentOperationList(): List<EnrollmentOperation> {
-        return createStubEnrollmentOperationList()
+        return enrollmentOperationList
     }
 
     override fun getDebitWalletExpenseOperationList(): List<ExpenseOperation> {
-        return createStubExpenseOperationList()
+        return expenseOperationList
     }
 
     override fun getCreditWalletEnrollmentOperationList(): List<EnrollmentOperation> {
-        return createStubEnrollmentOperationList()
+        return enrollmentOperationList
     }
 
     override fun getCreditWalletExpenseOperationList(): List<ExpenseOperation> {
-        return createStubExpenseOperationList()
+        return expenseOperationList
     }
 
     override fun getCacheWalletEnrollmentOperationList(): List<EnrollmentOperation> {
-        return createStubEnrollmentOperationList()
+        return enrollmentOperationList
     }
 
     override fun getCacheWalletExpenseOperationList(): List<ExpenseOperation> {
-        return createStubExpenseOperationList()
+        return expenseOperationList
     }
 
-    private fun createStubEnrollmentOperationList(): List<EnrollmentOperation> = listOf(
+    override fun saveDebitWalletEnrollOperation(enrollmentOperation: EnrollmentOperation) {
+        enrollmentOperationList.add(enrollmentOperation)
+    }
+
+    override fun saveDebitWalletExpenseOperation(expenseOperation: ExpenseOperation) {
+        expenseOperationList.add(expenseOperation)
+    }
+
+    override fun saveCreditWalletEnrollOperation(enrollmentOperation: EnrollmentOperation) {
+        enrollmentOperationList.add(enrollmentOperation)
+    }
+
+    override fun saveCreditWalletExpenseOperation(expenseOperation: ExpenseOperation) {
+        expenseOperationList.add(expenseOperation)
+    }
+
+    override fun saveCacheWalletEnrollOperation(enrollmentOperation: EnrollmentOperation) {
+        enrollmentOperationList.add(enrollmentOperation)
+    }
+
+    override fun saveCacheWalletExpenseOperation(expenseOperation: ExpenseOperation) {
+        expenseOperationList.add(expenseOperation)
+    }
+
+    private fun createStubEnrollmentOperationList(): MutableList<EnrollmentOperation> = arrayListOf(
             EnrollmentOperation(20.0, EnrollmentCategory.Transfer, Currency.USD),
             EnrollmentOperation(2500.0, EnrollmentCategory.Cache, Currency.RUB),
             EnrollmentOperation(5000.0, EnrollmentCategory.Salary, Currency.RUB),
             EnrollmentOperation(20.0, EnrollmentCategory.Transfer, Currency.USD)
     )
 
-    private fun createStubExpenseOperationList(): List<ExpenseOperation> = listOf(
+    private fun createStubExpenseOperationList(): MutableList<ExpenseOperation> = arrayListOf(
             ExpenseOperation(400.0, ExpenseCategory.Supermarket, Currency.USD),
             ExpenseOperation(250.0, ExpenseCategory.Transport, Currency.USD),
             ExpenseOperation(300.0, ExpenseCategory.Clothing, Currency.USD),
