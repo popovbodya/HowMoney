@@ -36,6 +36,12 @@ android {
             variant.buildConfigField "String", "FIXER_API_KEY", "\""+apiKeys.fixerIo+"\""
         }
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
