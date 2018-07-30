@@ -4,9 +4,36 @@
     <string name="email">popovbodya@gmail.com</string>
     <string name="currency_usd">USD</string>
     <string name="currency_rub">RUB</string>
+    <string name="wallet_debit">Дебетовые карты</string>
+    <string name="wallet_credit">Кредитные карты</string>
+    <string name="wallet_cache">Наличные</string>
+    <string name="enrollment">Доходы</string>
+    <string name="expense">Расходы</string>
 
     <!--Account screen-->
-    <string name="account_amount">%d %s</string>
+    <string name="account_menu_settings">Настройки</string>
+    <string name="account_menu_about">О приложении</string>
+    <string name="account_menu_wallet">Кошелек</string>
+    <string name="account_submenu_wallet_debit">Дебетовые карты</string>
+    <string name="account_submenu_wallet_credit">Кредитные карты</string>
+    <string name="account_submenu_wallet_cache">Наличные</string>
+    <string name="account_amount">%.1f %s</string>
+
+    <!--Enrollment screen-->
+    <string name="enrollment_toolbar_title">Доходы</string>
+    <string name="enrollment_diagram_title">За все время</string>
+
+    <!--Expense screen-->
+    <string name="expense_toolbar_title">Расходы</string>
+    <string name="expense_diagram_title">За все время</string>
+
+    <!--Replenishment screen-->
+    <string name="replenishment_toolbar_title">Добавление значения в кошелек</string>
+    <string name="replenishment_enrollment_toolbar_arg">дохода"</string>
+    <string name="replenishment_expense_toolbar_arg">расхода"</string>
+    <string name="replenishment_amount_edit_text_hint">Количество"</string>
+    <string name="replenishment_add_button_text">Добавить"</string>
+
 
     <!--Settings screen-->
     <string name="settings_currency_type_section">Выбор валюты</string>
@@ -14,9 +41,6 @@
     <string name="settings_default_value">USD</string>
     <string name="settings_currency_key">settings_currency_key</string>
 
-    <!--Launch screen-->
-    <string name="launch_menu_settings">Настройки</string>
-    <string name="lauch_menu_about">О приложении</string>
 
     <!--About screen-->
     <string name="about_toolbar_title">О приложении</string>

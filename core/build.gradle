@@ -43,7 +43,7 @@ dependencies {
     // dagger
     implementation libraries.dagger
     // rxjava
-    implementation libraries.rxJava2
+    implementation libraries.rxKotlin
     implementation libraries.rxAndroid
     // moxy
     implementation libraries.moxy

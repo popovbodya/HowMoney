@@ -5,4 +5,13 @@
     <color name="colorPrimaryDark">#eeeeee</color>
     <color name="colorAccent">#F44336</color>
     <color name="ic_launcher_background">#F4000F</color>
+
+    <!--ArcView-->
+    <color name="arcViewColorRed">#FF0000</color>
+    <color name="arcViewColorGreen">#00ff00</color>
+    <color name="arcViewColorBlue">#0000ff</color>
+    <color name="arcViewColorBlack">#000000</color>
+    <color name="arcViewColorYellow">#ffff00</color>
+    <color name="arcViewColorOrange">#ff8000</color>
+
 </resources>

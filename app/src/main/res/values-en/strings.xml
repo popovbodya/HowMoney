@@ -7,8 +7,8 @@
     <string name="currency_usd">USD</string>
     <string name="currency_rub">RUB</string>
 
-    <!--Account screen-->
-    <string name="account_amount">%d %s</string>
+    <!--Balance screen-->
+    <string name="account_amount">%.1f %s</string>
 
     <!--Settings screen-->
     <string name="settings_currency_type_section">Currency selection</string>
@@ -17,8 +17,8 @@
     <string name="settings_currency_key">settings_currency_key</string>
 
     <!--Launch screen-->
-    <string name="launch_menu_settings">Settings</string>
-    <string name="lauch_menu_about">About app</string>
+    <string name="account_menu_settings">Settings</string>
+    <string name="account_menu_about">About app</string>
 
     <!--About screen-->
     <string name="about_toolbar_title">About app</string>

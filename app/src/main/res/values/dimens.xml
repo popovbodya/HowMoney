@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="dimen_minimal">1dp</dimen>
+    <dimen name="dimen_small">8dp</dimen>
     <dimen name="dimen_medium">16dp</dimen>
     <dimen name="dimen_large">72dp</dimen>
 
     <dimen name="account_amount_text_size">24sp</dimen>
+
+    <dimen name="arcview_height">264dp</dimen>
+    <dimen name="arcview_width">264dp</dimen>
 
     <dimen name="about_image_margin_top">40dp</dimen>
     <dimen name="about_title_margin_top">32dp</dimen>
