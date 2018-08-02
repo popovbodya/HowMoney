@@ -9,5 +9,5 @@ import ru.popov.bodya.howmoney.domain.expense.models.ExpenseCategory
  */
 sealed class Operation
 
-data class EnrollmentOperation(val amount: Double, val enrollmentCategory: EnrollmentCategory, val currency: Currency)
-data class ExpenseOperation(val amount: Double, val expenseCategory: ExpenseCategory, val currency: Currency)
+data class EnrollmentOperation(val amount: Double, val enrollmentCategory: EnrollmentCategory, val currency: Currency) : Operation()
+data class ExpenseOperation(val amount: Double, val expenseCategory: ExpenseCategory, val currency: Currency) : Operation()

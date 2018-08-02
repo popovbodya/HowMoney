@@ -27,23 +27,18 @@ class BudgetPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-
         enrollmentInteractor.getEnrollmentCategoryMap(Wallet.DebitWallet)
                 .compose(rxSchedulersTransformer.ioToMainTransformerSingle())
-                .subscribe(Consumer {
-                    enrollmentInteractor.calculateFinalEnrollmentBalance(it)
-                            .compose(rxSchedulersTransformer.computationToMainTransformerSingle())
-                            .subscribe(Consumer { viewState.showEnrollmentBalance(it) })
-                })
+                .flatMap { enrollmentInteractor.calculateFinalEnrollmentBalance(it) }
+                .compose(rxSchedulersTransformer.computationToMainTransformerSingle())
+                .subscribe(viewState::showEnrollmentBalance)
                 .connect(compositeDisposable)
 
         expenseInteractor.getExpenseCategoryMap(Wallet.CreditWallet)
                 .compose(rxSchedulersTransformer.ioToMainTransformerSingle())
-                .subscribe(Consumer {
-                    expenseInteractor.calculateFinalExpenseBalance(it)
-                            .compose(rxSchedulersTransformer.computationToMainTransformerSingle())
-                            .subscribe(Consumer { viewState.showExpenseBalance(it) })
-                })
+                .flatMap { expenseInteractor.calculateFinalExpenseBalance(it) }
+                .compose(rxSchedulersTransformer.computationToMainTransformerSingle())
+                .subscribe(viewState::showExpenseBalance)
                 .connect(compositeDisposable)
     }
 

@@ -2,6 +2,7 @@ package ru.popov.bodya.howmoney.presentation.mvp.account
 
 import com.arellomobile.mvp.InjectViewState
 import io.reactivex.functions.Consumer
+import ru.popov.bodya.core.extensions.connect
 import ru.popov.bodya.core.mvp.AppPresenter
 import ru.popov.bodya.core.rx.RxSchedulersTransformer
 import ru.popov.bodya.howmoney.domain.launch.LaunchInteractor
@@ -24,6 +25,7 @@ class AccountPresenter @Inject constructor(private val router: Router,
         launchInteractor.getExchangeRate()
                 .compose(rxSchedulersTransformer.ioToMainTransformerSingle())
                 .subscribe(Consumer { router.replaceScreen(BUDGET_SCREEN) })
+                .connect(compositeDisposable)
     }
 
     fun onBackPressed() {
