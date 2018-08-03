@@ -15,7 +15,6 @@ import ru.popov.bodya.howmoney.presentation.ui.settings.fragments.SettingsFragme
  */
 @Module
 interface AccountFragmentsInjectorBuilders {
-
     @ContributesAndroidInjector
     fun provideAboutFragment(): AboutFragment
 
