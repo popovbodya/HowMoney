@@ -27,14 +27,14 @@ class TransactionsRepositoryTest {
     }
 
     @Test
-    fun test_addsTransaction() {
+    fun transaction_add() {
         transactionsRepository.addTransaction(transactionForTesting).test()
         verify(transactionsDao).insert(transactionForTesting)
         verifyNoMoreInteractions(transactionsDao)
     }
 
     @Test
-    fun test_getsAllTransactions() {
+    fun transactions_getAll() {
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllTransactions()).thenReturn(Single.just(expected))
         transactionsRepository.getAllTransactions().test().assertValue(expected)
@@ -43,7 +43,7 @@ class TransactionsRepositoryTest {
     }
 
     @Test
-    fun test_getsAllIncomeTransactions() {
+    fun incomeTransactions_getAll() {
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllIncomeTransactions()).thenReturn(Single.just(expected))
         transactionsRepository.getAllIncomeTransactions().test().assertValue(expected)
@@ -52,7 +52,7 @@ class TransactionsRepositoryTest {
     }
 
     @Test
-    fun test_getsAllExpenseTransactions() {
+    fun expenseTransactions_getAll() {
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllExpenseTransactions()).thenReturn(Single.just(expected))
         transactionsRepository.getAllExpenseTransactions().test().assertValue(expected)
@@ -61,7 +61,7 @@ class TransactionsRepositoryTest {
     }
 
     @Test
-    fun test_getsAllTransactionsByWallet() {
+    fun transactions_getByWalletId() {
         val walletId = 228
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllTransactionsByWalletId(walletId)).thenReturn(Single.just(expected))
@@ -71,7 +71,7 @@ class TransactionsRepositoryTest {
     }
 
     @Test
-    fun test_getsAllIncomeTransactionsByWallet() {
+    fun incomeTransactions_getByWalletId() {
         val walletId = 0
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllIncomeTransactionsByWalletId(walletId)).thenReturn(Single.just(expected))
@@ -81,7 +81,7 @@ class TransactionsRepositoryTest {
     }
 
     @Test
-    fun test_getAllExpenseTransactionsByWallet() {
+    fun expenseTransactions_getByWalletId() {
         val walletId = 0
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllExpenseTransactionsByWalletId(walletId)).thenReturn(Single.just(expected))
@@ -91,14 +91,14 @@ class TransactionsRepositoryTest {
     }
 
     @Test
-    fun test_deletesTransaction() {
+    fun transaction_deletes() {
         transactionsRepository.deleteTransaction(transactionForTesting).test()
         verify(transactionsDao).delete(transactionForTesting)
         verifyNoMoreInteractions(transactionsDao)
     }
 
     @Test
-    fun test_updatesTransaction() {
+    fun transaction_updates() {
         transactionsRepository.updateTransaction(transactionForTesting).test()
         verify(transactionsDao).update(transactionForTesting)
         verifyNoMoreInteractions(transactionsDao)

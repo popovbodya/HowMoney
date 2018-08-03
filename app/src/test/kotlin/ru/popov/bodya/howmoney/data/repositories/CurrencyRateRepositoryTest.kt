@@ -30,7 +30,7 @@ class CurrencyRateRepositoryTest {
     }
 
     @Test
-    fun test_getExchangeRateSuccess() {
+    fun exchangeRate_getsSuccessfully() {
         val expected = CurrentRateBean("23.06.1999", 29.0)
         `when`(currenciesRateApiWrapper.getCurrentRate(fromCurrency, toCurrency)).thenReturn(Single.just(expected))
         currencyRateRepository.getExchangeRate(fromCurrency, toCurrency)
@@ -43,7 +43,7 @@ class CurrencyRateRepositoryTest {
     }
 
     @Test
-    fun test_getExchangeRateError() {
+    fun exchangeRate_getsWithError() {
         val expectedException = RuntimeException()
         `when`(currenciesRateApiWrapper.getCurrentRate(fromCurrency, toCurrency)).thenReturn(Single.error(expectedException))
         currencyRateRepository.getExchangeRate(fromCurrency, toCurrency)

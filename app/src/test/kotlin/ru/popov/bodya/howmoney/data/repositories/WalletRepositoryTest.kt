@@ -26,7 +26,7 @@ class WalletRepositoryTest {
     }
 
     @Test
-    fun test_getWalletsSuccess() {
+    fun wallets_getWithSuccess() {
         val expected = listOf(walletForTesting)
         `when`(walletDao.getAllWallets()).thenReturn(Single.just(expected))
         walletRepository.getWallets().test().assertValue(expected)
@@ -35,7 +35,7 @@ class WalletRepositoryTest {
     }
 
     @Test
-    fun test_getWalletsError() {
+    fun wallet_getsWithError() {
         val expectedException = RuntimeException()
         `when`(walletDao.getAllWallets()).thenReturn(Single.error(expectedException))
         walletRepository.getWallets().test().assertError(expectedException)
@@ -44,7 +44,7 @@ class WalletRepositoryTest {
     }
 
     @Test
-    fun test_getsWalletsById() {
+    fun wallet_getsById() {
         val walletId = 0
         `when`(walletDao.getWalletById(walletId)).thenReturn(Single.just(walletForTesting))
         walletRepository.getWalletById(walletId).test().assertValue(walletForTesting)
@@ -53,21 +53,21 @@ class WalletRepositoryTest {
     }
 
     @Test
-    fun test_addsWallet() {
+    fun wallet_added() {
         walletRepository.addWallet(walletForTesting).test()
         verify(walletDao).insert(walletForTesting)
         verifyNoMoreInteractions(walletDao)
     }
 
     @Test
-    fun test_deletesWallet() {
+    fun wallet_deletes() {
         walletRepository.deleteWallet(walletForTesting).test()
         verify(walletDao).delete(walletForTesting)
         verifyNoMoreInteractions(walletDao)
     }
 
     @Test
-    fun test_updatesWalletBalance() {
+    fun walletBalance_updates() {
         val walletId = 0
         val newBalance = 1.0
         walletRepository.updateWalletBalance(walletId, newBalance).test()
@@ -76,7 +76,7 @@ class WalletRepositoryTest {
     }
 
     @Test
-    fun test_increasesWalletBalance() {
+    fun walletBalance_increases() {
         val walletId = 0
         val inc = 1.0
         walletRepository.increaseWalletBalance(walletId, inc).test()

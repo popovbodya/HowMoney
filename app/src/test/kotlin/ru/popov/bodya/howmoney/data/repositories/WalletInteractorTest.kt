@@ -45,14 +45,14 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun test_createsWallet() {
+    fun wallet_create() {
         walletInteractor.createWallet(walletForTesting).test()
         verify(walletDao).insert(walletForTesting)
         verifyNoMoreInteractions(walletDao)
     }
 
     @Test
-    fun test_getsWalletBalance() {
+    fun walletBalance_get() {
         `when`(walletDao.getWalletById(walletForTesting.id)).thenReturn(Single.just(walletForTesting))
         walletInteractor.getWalletBalance(walletForTesting.id).test().assertValue(1.0)
         verify(walletDao).getWalletById(walletForTesting.id)
@@ -60,7 +60,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun test_getsWalletMajorCurrency() {
+    fun walletCurrency_get() {
         `when`(walletDao.getWalletById(walletForTesting.id)).thenReturn(Single.just(walletForTesting))
         walletInteractor.getMajorCurrencyForWallet(walletForTesting.id).test().assertValue(Currency.RUB)
         verify(walletDao).getWalletById(walletForTesting.id)
@@ -68,7 +68,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun test_getsAllWallets() {
+    fun wallets_get() {
         val expected = listOf(walletForTesting)
         `when`(walletDao.getAllWallets()).thenReturn(Single.just(expected))
         walletInteractor.getAllWallets().test().assertValue(expected)
@@ -77,7 +77,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun test_getsAllIncomeTransactions() {
+    fun incomeTransactions_getAll() {
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllIncomeTransactions()).thenReturn(Single.just(expected))
         walletInteractor.getAllIncomeTransactions().test().assertValue(expected)
@@ -86,7 +86,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun test_getsAllExpenseTransactions() {
+    fun expenseTransactions_getAll() {
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllExpenseTransactions()).thenReturn(Single.just(expected))
         walletInteractor.getAllExpenseTransactions().test().assertValue(expected)
@@ -95,7 +95,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun test_getsAllIncomeTransactionsByWallet() {
+    fun incomeTransactions_getByWalletId() {
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllIncomeTransactionsByWalletId(walletForTesting.id)).thenReturn(Single.just(expected))
         walletInteractor.getAllIncomeTransactionsByWallet(walletForTesting.id).test().assertValue(expected)
@@ -104,7 +104,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun test_getsAllExpenseTransactionsByWallet() {
+    fun expenseTransactions_getByWalletId() {
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllExpenseTransactionsByWalletId(walletForTesting.id)).thenReturn(Single.just(expected))
         walletInteractor.getAllExpenseTransactionsByWallet(walletForTesting.id).test().assertValue(expected)
@@ -113,7 +113,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun test_getsAllTransactionsByWallet() {
+    fun transactions_getByWalletId() {
         val expected = listOf(transactionForTesting)
         `when`(transactionsDao.getAllTransactionsByWalletId(walletForTesting.id)).thenReturn(Single.just(expected))
         walletInteractor.getAllTransactionsByWallet(walletForTesting.id).test().assertValue(expected)
@@ -122,7 +122,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun test_createsTransaction_withDiffCurrency() {
+    fun transaction_createsWithDifferentCurrency() {
         val transactionToCreateWithDifferentCurrency = transactionForTesting.copy(currency = Currency.USD)
 
         `when`(walletRepository.getWalletById(walletForTesting.id)).thenReturn(Single.just(walletForTesting))
@@ -135,7 +135,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun test_createsTransaction_withSameCurrency() {
+    fun transaction_createsWithSameCurrency() {
         val transactionToCreateWithTheSameCurrency = transactionForTesting.copy(amount = 2.0)
 
         `when`(walletRepository.getWalletById(walletForTesting.id)).thenReturn(Single.just(walletForTesting))
