@@ -2,7 +2,6 @@ package ru.popov.bodya.howmoney.data.database.preferences
 
 import android.content.SharedPreferences
 import ru.popov.bodya.howmoney.data.network.beans.CurrentRateBean
-import ru.popov.bodya.howmoney.domain.wallet.models.Currency
 
 /**
  *  @author popovbodya
