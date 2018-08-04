@@ -1,5 +1,6 @@
 package ru.popov.bodya.howmoney.data.repositories
 
+import io.reactivex.Completable
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
@@ -28,7 +29,7 @@ class TransactionsRepositoryTest {
 
     @Test
     fun transaction_add() {
-        transactionsRepository.addTransaction(transactionForTesting).test()
+        transactionsRepository.addTransaction(transactionForTesting).test().assertResult()
         verify(transactionsDao).insert(transactionForTesting)
         verifyNoMoreInteractions(transactionsDao)
     }

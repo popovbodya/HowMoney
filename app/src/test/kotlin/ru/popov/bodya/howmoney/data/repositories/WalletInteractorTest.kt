@@ -25,18 +25,14 @@ class WalletInteractorTest {
     private lateinit var currenciesRateApiWrapper: CurrenciesRateApiWrapper
     private lateinit var walletInteractor: WalletInteractor
 
-    private lateinit var walletDao: WalletDao
-    private lateinit var exchangeRateDao: ExchangeRateDao
-    private lateinit var transactionsDao: TransactionsDao
 
-    private val transactionForTesting = Transaction(0, Currency.RUB, 1.0, Category.OTHER, 0, "OTHER", Date())
-    private val walletForTesting = Wallet(0, 1.0, Type.CASH, Currency.RUB, "Основной кошелек")
+    private lateinit var transactionForTesting: Transaction
+    private lateinit var walletForTesting: Wallet
 
     @Before
     fun setUp() {
-        transactionsDao = mock(TransactionsDao::class.java)
-        walletDao = mock(WalletDao::class.java)
-        exchangeRateDao = mock(ExchangeRateDao::class.java)
+        transactionForTesting = Transaction(0, Currency.RUB, 1.0, Category.OTHER, 0, "OTHER", Date())
+        walletForTesting = Wallet(0, 1.0, Type.CASH, Currency.RUB, "Основной кошелек")
         walletRepository = mock(WalletRepository::class.java)
         currenciesRateApiWrapper = mock(CurrenciesRateApiWrapper::class.java)
         currencyRateRepository = mock(CurrencyRateRepository::class.java)
@@ -46,79 +42,79 @@ class WalletInteractorTest {
 
     @Test
     fun wallet_create() {
-        walletInteractor.createWallet(walletForTesting).test()
-        verify(walletDao).insert(walletForTesting)
-        verifyNoMoreInteractions(walletDao)
+        walletInteractor.createWallet(walletForTesting).test().assertResult()
+        verify(walletRepository).addWallet(walletForTesting)
+        verifyNoMoreInteractions(walletRepository)
     }
 
     @Test
     fun walletBalance_get() {
-        `when`(walletDao.getWalletById(walletForTesting.id)).thenReturn(Single.just(walletForTesting))
+        `when`(walletRepository.getWalletById(walletForTesting.id)).thenReturn(Single.just(walletForTesting))
         walletInteractor.getWalletBalance(walletForTesting.id).test().assertValue(1.0)
-        verify(walletDao).getWalletById(walletForTesting.id)
-        verifyNoMoreInteractions(walletDao)
+        verify(walletRepository).getWalletById(walletForTesting.id)
+        verifyNoMoreInteractions(walletRepository)
     }
 
     @Test
     fun walletCurrency_get() {
-        `when`(walletDao.getWalletById(walletForTesting.id)).thenReturn(Single.just(walletForTesting))
+        `when`(walletRepository.getWalletById(walletForTesting.id)).thenReturn(Single.just(walletForTesting))
         walletInteractor.getMajorCurrencyForWallet(walletForTesting.id).test().assertValue(Currency.RUB)
-        verify(walletDao).getWalletById(walletForTesting.id)
-        verifyNoMoreInteractions(walletDao)
+        verify(walletRepository).getWalletById(walletForTesting.id)
+        verifyNoMoreInteractions(walletRepository)
     }
 
     @Test
     fun wallets_get() {
         val expected = listOf(walletForTesting)
-        `when`(walletDao.getAllWallets()).thenReturn(Single.just(expected))
+        `when`(walletRepository.getWallets()).thenReturn(Single.just(expected))
         walletInteractor.getAllWallets().test().assertValue(expected)
-        verify(walletDao).getAllWallets()
-        verifyNoMoreInteractions(walletDao)
+        verify(walletRepository).getWallets()
+        verifyNoMoreInteractions(walletRepository)
     }
 
     @Test
     fun incomeTransactions_getAll() {
         val expected = listOf(transactionForTesting)
-        `when`(transactionsDao.getAllIncomeTransactions()).thenReturn(Single.just(expected))
+        `when`(transactionsRepository.getAllIncomeTransactions()).thenReturn(Single.just(expected))
         walletInteractor.getAllIncomeTransactions().test().assertValue(expected)
-        verify(transactionsDao).getAllIncomeTransactions()
-        verifyNoMoreInteractions(walletDao)
+        verify(transactionsRepository).getAllIncomeTransactions()
+        verifyNoMoreInteractions(transactionsRepository)
     }
 
     @Test
     fun expenseTransactions_getAll() {
         val expected = listOf(transactionForTesting)
-        `when`(transactionsDao.getAllExpenseTransactions()).thenReturn(Single.just(expected))
+        `when`(transactionsRepository.getAllExpenseTransactions()).thenReturn(Single.just(expected))
         walletInteractor.getAllExpenseTransactions().test().assertValue(expected)
-        verify(transactionsDao).getAllExpenseTransactions()
-        verifyNoMoreInteractions(walletDao)
+        verify(transactionsRepository).getAllExpenseTransactions()
+        verifyNoMoreInteractions(transactionsRepository)
     }
 
     @Test
     fun incomeTransactions_getByWalletId() {
         val expected = listOf(transactionForTesting)
-        `when`(transactionsDao.getAllIncomeTransactionsByWalletId(walletForTesting.id)).thenReturn(Single.just(expected))
+        `when`(transactionsRepository.getAllIncomeTransactionsByWallet(walletForTesting.id)).thenReturn(Single.just(expected))
         walletInteractor.getAllIncomeTransactionsByWallet(walletForTesting.id).test().assertValue(expected)
-        verify(transactionsDao).getAllIncomeTransactionsByWalletId(walletForTesting.id)
-        verifyNoMoreInteractions(transactionsDao)
+        verify(transactionsRepository).getAllIncomeTransactionsByWallet(walletForTesting.id)
+        verifyNoMoreInteractions(transactionsRepository)
     }
 
     @Test
     fun expenseTransactions_getByWalletId() {
         val expected = listOf(transactionForTesting)
-        `when`(transactionsDao.getAllExpenseTransactionsByWalletId(walletForTesting.id)).thenReturn(Single.just(expected))
+        `when`(transactionsRepository.getAllExpenseTransactionsByWallet(walletForTesting.id)).thenReturn(Single.just(expected))
         walletInteractor.getAllExpenseTransactionsByWallet(walletForTesting.id).test().assertValue(expected)
-        verify(transactionsDao).getAllExpenseTransactionsByWalletId(walletForTesting.id)
-        verifyNoMoreInteractions(transactionsDao)
+        verify(transactionsRepository).getAllExpenseTransactionsByWallet(walletForTesting.id)
+        verifyNoMoreInteractions(transactionsRepository)
     }
 
     @Test
     fun transactions_getByWalletId() {
         val expected = listOf(transactionForTesting)
-        `when`(transactionsDao.getAllTransactionsByWalletId(walletForTesting.id)).thenReturn(Single.just(expected))
+        `when`(transactionsRepository.getAllTransactionsByWallet(walletForTesting.id)).thenReturn(Single.just(expected))
         walletInteractor.getAllTransactionsByWallet(walletForTesting.id).test().assertValue(expected)
-        verify(transactionsDao).getAllTransactionsByWalletId(walletForTesting.id)
-        verifyNoMoreInteractions(transactionsDao)
+        verify(transactionsRepository).getAllTransactionsByWallet(walletForTesting.id)
+        verifyNoMoreInteractions(transactionsRepository)
     }
 
     @Test

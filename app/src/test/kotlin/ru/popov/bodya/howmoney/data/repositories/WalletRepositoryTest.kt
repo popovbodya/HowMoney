@@ -61,8 +61,8 @@ class WalletRepositoryTest {
 
     @Test
     fun wallet_deletes() {
-        walletRepository.deleteWallet(walletForTesting).test()
-        verify(walletDao).delete(walletForTesting)
+        walletRepository.deleteWallet(walletForTesting.id).test()
+        verify(walletDao).deleteWalletById(walletForTesting.id)
         verifyNoMoreInteractions(walletDao)
     }
 
