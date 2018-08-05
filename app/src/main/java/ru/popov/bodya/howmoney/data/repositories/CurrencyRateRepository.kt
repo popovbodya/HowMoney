@@ -14,7 +14,7 @@ class CurrencyRateRepository(private val currenciesRateApiWrapper: CurrenciesRat
                     .doOnSuccess {
                         exchangeRateDao.insert(ExchangeRate(fromCurrency, toCurrency, it.result, it.date))
                     }.map { it -> it.result }
-                    .doOnError { exchangeRateDao.getExchangeRate(fromCurrency, toCurrency) }
+                    .onErrorResumeNext { exchangeRateDao.getExchangeRate(fromCurrency, toCurrency) }
 
     private fun getExchangeRateFromApi(fromCurrency: Currency, toCurrency: Currency): Single<CurrentRateBean>
             = currenciesRateApiWrapper.getCurrentRate(fromCurrency, toCurrency)

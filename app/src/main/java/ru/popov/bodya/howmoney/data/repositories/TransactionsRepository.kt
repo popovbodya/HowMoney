@@ -6,16 +6,31 @@ import ru.popov.bodya.howmoney.domain.wallet.models.Transaction
 
 class TransactionsRepository(private val transactionsDao: TransactionsDao) {
     fun addTransaction(transaction: Transaction)
-            = Completable.fromAction { transactionsDao.insert(transaction) }
+            = Completable.fromAction { transactionsDao.insert(transaction) }.subscribe()
 
     fun addTransactions(transactions: List<Transaction>)
-            = Completable.fromAction { transactionsDao.insertAll(transactions) }
+            = Completable.fromAction { transactionsDao.insertAll(transactions) }.subscribe()
+
+    fun deleteAllTransactionsByWalletId(walletId: Int)
+            = Completable.fromAction { transactionsDao.deleteAllTransactionsByWalletId(walletId) }
+
+    fun deleteTransactionById(transactionId: Int)
+            = Completable.fromAction { transactionsDao.deleteTransactionById(transactionId) }.subscribe()
+
+    fun getTransactionById(transactionId: Int)
+            = Completable.fromAction { transactionsDao.getTransactionById(transactionId) }.subscribe()
 
     fun getAllTransactions()
             = transactionsDao.getAllTransactions()
 
     fun getAllIncomeTransactions()
             = transactionsDao.getAllIncomeTransactions()
+
+    fun getAllIncomeTransactionsSumByWalletId(walletId: Int)
+            = transactionsDao.getAllIncomeTransactionsSumByWalletId(walletId)
+
+    fun getAllExpenseTransactionsSumByWalletId(walletId: Int)
+            = transactionsDao.getAllExpenseTransactionsSumByWalletId(walletId)
 
     fun getAllExpenseTransactions()
             = transactionsDao.getAllExpenseTransactions()
@@ -30,8 +45,8 @@ class TransactionsRepository(private val transactionsDao: TransactionsDao) {
             = transactionsDao.getAllExpenseTransactionsByWalletId(walletId)
 
     fun deleteTransaction(transaction: Transaction)
-            = Completable.fromAction { transactionsDao.delete(transaction) }
+            = Completable.fromAction { transactionsDao.delete(transaction) }.subscribe()
 
     fun updateTransaction(transaction: Transaction)
-            = Completable.fromAction { transactionsDao.update(transaction) }
+            = Completable.fromAction { transactionsDao.update(transaction) }.subscribe()
 }

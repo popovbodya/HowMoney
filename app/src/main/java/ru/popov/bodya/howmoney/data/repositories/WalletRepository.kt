@@ -12,7 +12,7 @@ class WalletRepository(private val walletDao: WalletDao) {
 
     fun addWallet(wallet: Wallet) = Completable.fromAction { walletDao.insert(wallet) }
 
-    fun deleteWallet(wallet: Wallet) = Completable.fromAction { walletDao.delete(wallet) }
+    fun deleteWallet(walletId: Int) = Completable.fromAction { walletDao.deleteWalletById(walletId) }
 
     fun updateWalletBalance(walletId: Int, newBalance: Double)
             = Completable.fromAction { walletDao.updateWalletBalance(walletId, newBalance) }
