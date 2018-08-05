@@ -1,7 +1,9 @@
 package ru.popov.bodya.howmoney.di.account
 
 import android.app.Application
+import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.Room
+import android.arch.persistence.room.RoomDatabase
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -55,10 +57,7 @@ class AccountRepositoryModule {
                     .create(CurrenciesRateApi::class.java)
 
     @Provides
-    fun provideDb(app: Application) =
-            Room.databaseBuilder(app, AppDatabase::class.java, "app.db")
-                    .fallbackToDestructiveMigration()
-                    .build()
+    fun provideDb(app: Application) = AppDatabase.getInstance(app)
 
     @Provides
     fun provideWalletDao(db: AppDatabase): WalletDao = db.walletDao

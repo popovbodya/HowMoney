@@ -12,8 +12,8 @@ import ru.popov.bodya.howmoney.domain.wallet.WalletInteractor
 @Module
 class AccountDomainModule {
     @Provides
-    fun provideLaunchInteractor(currencyRateRepository: CurrencyRateRepository)  =
-            LaunchInteractor(currencyRateRepository)
+    fun provideLaunchInteractor(walletRepository: WalletRepository)  =
+            LaunchInteractor(walletRepository)
 
     @Provides
     fun provideWalletInteractor(currencyRateRepository: CurrencyRateRepository,
