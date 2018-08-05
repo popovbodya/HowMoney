@@ -19,6 +19,14 @@
     <string name="account_submenu_wallet_cache">Наличные</string>
     <string name="account_amount">%.1f %s</string>
 
+    <string name="transaction_created">Транзакция успешно создана!</string>
+    <string name="transaction_period">Периодичность транзакции</string>
+    <string name="unspecified">Не задан</string>
+    <string name="every_day">Каждый день</string>
+    <string name="every_three_days">Каждые три дня</string>
+    <string name="every_week">Каждую неделю</string>
+    <string name="every_month">Каждый месяц</string>
+
     <!--Enrollment screen-->
     <string name="enrollment_toolbar_title">Доходы</string>
     <string name="enrollment_diagram_title">За все время</string>

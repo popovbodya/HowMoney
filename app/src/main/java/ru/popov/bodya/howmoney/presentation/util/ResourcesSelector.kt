@@ -4,6 +4,7 @@ import android.view.View
 import ru.popov.bodya.howmoney.R
 import ru.popov.bodya.howmoney.domain.wallet.models.Category
 import ru.popov.bodya.howmoney.domain.wallet.models.Transaction
+import ru.popov.bodya.howmoney.domain.wallet.models.Type
 
 class ResourcesSelector private constructor() {
 
@@ -34,6 +35,18 @@ class ResourcesSelector private constructor() {
             Category.FOOD -> R.drawable.ic_food
             Category.OTHER -> R.drawable.ic_other
             Category.SALARY -> R.drawable.ic_salary
+        }
+
+        fun fromWalletTypeToDrawable(type: Type) = when (type) {
+            Type.CASH -> R.drawable.ic_cash
+            Type.DEBIT_CARD -> R.drawable.ic_credit_card
+            Type.BANK_ACCOUNT -> R.drawable.ic_bank
+        }
+
+        fun fromWalletTypeToString(type: Type, view: View) = when (type) {
+            Type.CASH -> view.resources.getString(R.string.cash)
+            Type.DEBIT_CARD -> view.resources.getString(R.string.credit_card)
+            Type.BANK_ACCOUNT -> view.resources.getString(R.string.bank_account)
         }
     }
 }

@@ -66,7 +66,7 @@ class WalletFragment : BaseFragment(), WalletView {
     override fun showWallets(wallets: List<Wallet>) {
         accountWallets = wallets
         if (wallets.isNotEmpty())
-        walletPresenter.fetchTransactionsSumByWalletId(wallets[vp_amount.currentItem].id)
+            walletPresenter.fetchTransactionsSumByWalletId(wallets[vp_amount.currentItem].id)
         pagerAdapter.updateDataSet(wallets)
     }
 
@@ -146,7 +146,7 @@ class WalletFragment : BaseFragment(), WalletView {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab?.position) {
+                when (tab?.position) {
                     0 -> walletPresenter.fetchAllTransactions()
                     1 -> walletPresenter.fetchAllIncomeTransactions()
                     2 -> walletPresenter.fetchAllExpenseTransactions()
@@ -176,7 +176,7 @@ class WalletFragment : BaseFragment(), WalletView {
     }
 
     private fun setShouldShowCurrencySpinner(value: Boolean) {
-        when(value) {
+        when (value) {
             true -> {
                 pb_placeholder.visibility = View.VISIBLE
                 progressBar.visibility = View.VISIBLE

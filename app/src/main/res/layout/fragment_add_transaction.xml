@@ -67,7 +67,7 @@
             segmentedgroup:sc_border_width="1dp"
             segmentedgroup:sc_checked_text_color="@color/white"
             segmentedgroup:sc_corner_radius="2dp"
-            segmentedgroup:sc_tint_color="@color/colorPrimary">
+            segmentedgroup:sc_tint_color="@color/colorAccent">
 
             <RadioButton
                 android:id="@+id/btn_rub"
@@ -106,7 +106,7 @@
             android:text="@string/transaction_category"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rg_currencies" />
+            app:layout_constraintTop_toBottomOf="@id/sb_period" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_categories"
@@ -133,55 +133,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_categories" />
 
-        <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/rg_wallets"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            android:weightSum="3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_transaction_wallet"
-            segmentedgroup:sc_border_width="1dp"
-            segmentedgroup:sc_checked_text_color="@color/white"
-            segmentedgroup:sc_corner_radius="2dp"
-            segmentedgroup:sc_tint_color="@color/colorPrimary">
-
-            <RadioButton
-                android:id="@+id/btn_cash"
-                style="@style/RadioButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="4dp"
-                android:text="@string/cash"
-                android:textAllCaps="true" />
-
-            <RadioButton
-                android:id="@+id/btn_credit_card"
-                style="@style/RadioButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="4dp"
-                android:text="@string/credit_card"
-                android:textAllCaps="true" />
-
-            <RadioButton
-                android:id="@+id/btn_bank_account"
-                style="@style/RadioButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="4dp"
-                android:text="@string/bank_account"
-                android:textAllCaps="true" />
-
-        </info.hoang8f.android.segmented.SegmentedGroup>
-
         <TextView
             android:id="@+id/tv_comment"
             style="@style/TextStyle"
@@ -193,7 +144,7 @@
             android:text="@string/transaction_commentary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rg_wallets" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_wallets" />
 
         <EditText
             android:id="@+id/et_comment_on_transaction"
@@ -226,6 +177,59 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_comment_on_transaction" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_wallets"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_transaction_wallet" />
+
+        <TextView
+            android:id="@+id/tv_transaction_period"
+            style="@style/TextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/transaction_period"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rg_currencies" />
+
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/sb_period"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:max="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_period" />
+
+        <TextView
+            android:id="@+id/tv_period"
+            style="@style/TextStyle.Small.Light"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/unspecified"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_transaction_period" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -108,16 +108,14 @@ class AccountActivity : AppActivity(), AccountView, NavigationView.OnNavigationI
         toolbar.title = getString(titleResId)
         toolbar.setNavigationOnClickListener { onBackPressed() }
         if (supportFragmentManager.backStackEntryCount == 0) {
+            onShowMenuItem(R.id.graphics)
             initToggle()
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         } else {
+            onHideMenuItem(R.id.graphics)
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             setBackArrow(true)
         }
-    }
-
-    private fun setBackArrow(state : Boolean) {
-        supportActionBar?.setDisplayHomeAsUpEnabled(state)
     }
 
     private fun initUI() {
@@ -125,6 +123,18 @@ class AccountActivity : AppActivity(), AccountView, NavigationView.OnNavigationI
         toolbar.title = resources.getString(R.string.wallet)
         setSupportActionBar(toolbar)
         initToggle()
+    }
+
+    private fun onShowMenuItem(resId: Int) {
+        toolbar.menu.findItem(resId)?.isVisible = true
+    }
+
+    private fun onHideMenuItem(resId: Int) {
+        toolbar.menu.findItem(resId)?.isVisible = false
+    }
+
+    private fun setBackArrow(state: Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(state)
     }
 
     private fun initToggle() {
@@ -144,7 +154,7 @@ class AccountActivity : AppActivity(), AccountView, NavigationView.OnNavigationI
             return when (screenKey) {
                 WALLET_SCREEN -> WalletFragment()
                 STATS_SCREEN -> StatsFragment()
-                NEW_TRANSACTION_SCREEN -> AddTransactionFragment()
+                NEW_TRANSACTION_SCREEN -> AddTransactionFragment.newInstance(data as Boolean)
                 SETTINGS_SCREEN -> SettingsFragment()
                 ABOUT_SCREEN -> AboutFragment()
                 else -> null

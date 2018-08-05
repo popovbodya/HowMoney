@@ -94,15 +94,4 @@
         app:layout_constraintStart_toEndOf="@+id/tv_time"
         app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_margin="0dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/greyLight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/iv_currency_type"
-        app:layout_constraintTop_toBottomOf="@+id/tv_amount" />
-
 </android.support.constraint.ConstraintLayout>

@@ -1,9 +1,11 @@
 package ru.popov.bodya.howmoney.presentation.ui.settings.fragments
 
 import android.os.Bundle
+import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_settings.*
 import ru.popov.bodya.howmoney.R
 import ru.popov.bodya.howmoney.presentation.mvp.settings.SettingsPresenter
 import ru.popov.bodya.howmoney.presentation.mvp.settings.SettingsView
@@ -12,9 +14,6 @@ import ru.popov.bodya.howmoney.presentation.ui.common.BaseFragment
 import ru.popov.bodya.howmoney.presentation.ui.common.Screens
 import javax.inject.Inject
 
-/**
- *  @author popovbodya
- */
 class SettingsFragment : BaseFragment(), SettingsView {
 
     override val toolbarTitleId: Int
@@ -34,14 +33,35 @@ class SettingsFragment : BaseFragment(), SettingsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
-        initUI()
         setHasOptionsMenu(true)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUI()
     }
 
     override fun setUpToolbarTitle(resId: Int) {
         (activity as AccountActivity).updateToolBar(resId)
     }
 
+    override fun showFavCurrency(currencyKey: String) {
+        when(currencyKey) {
+            "RUB" -> rg_currencies.check(R.id.btn_rub)
+            "USD" -> rg_currencies.check(R.id.btn_usd)
+            "EUR" -> rg_currencies.check(R.id.btn_eur)
+        }
+    }
+
+
     private fun initUI() {
+        rg_currencies.setOnCheckedChangeListener { _, checkedId ->
+            when(checkedId) {
+                R.id.btn_rub -> settingsPresenter.updateFavCurrency("RUB")
+                R.id.btn_usd -> settingsPresenter.updateFavCurrency("USD")
+                R.id.btn_eur -> settingsPresenter.updateFavCurrency("EUR")
+            }
+        }
+        tv_about.setOnClickListener { settingsPresenter.navigateToAboutScreen() }
     }
 }
