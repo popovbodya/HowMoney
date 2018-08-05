@@ -32,10 +32,13 @@ class CurrencyRateRepositoryTest {
     @Test
     fun exchangeRate_getsSuccessfully() {
         val expected = CurrentRateBean("23.06.1999", 29.0)
-        `when`(currenciesRateApiWrapper.getCurrentRate(fromCurrency, toCurrency)).thenReturn(Single.just(expected))
+        `when`(currenciesRateApiWrapper.getCurrentRate(fromCurrency, toCurrency))
+                .thenReturn(Single.just(expected))
+
         currencyRateRepository.getExchangeRate(fromCurrency, toCurrency)
                 .test()
                 .assertValue(expected.result)
+        
         verify(currenciesRateApiWrapper).getCurrentRate(fromCurrency, toCurrency)
         verifyNoMoreInteractions(currenciesRateApiWrapper)
         verify(exchangeRateDao).insert(ExchangeRate(fromCurrency, toCurrency, expected.result, expected.date))
@@ -45,10 +48,13 @@ class CurrencyRateRepositoryTest {
     @Test
     fun exchangeRate_getsWithError() {
         val expectedException = RuntimeException()
-        `when`(currenciesRateApiWrapper.getCurrentRate(fromCurrency, toCurrency)).thenReturn(Single.error(expectedException))
+        `when`(currenciesRateApiWrapper.getCurrentRate(fromCurrency, toCurrency))
+                .thenReturn(Single.error(expectedException))
+
         currencyRateRepository.getExchangeRate(fromCurrency, toCurrency)
                 .test()
                 .assertError(expectedException)
+
         verify(currenciesRateApiWrapper).getCurrentRate(fromCurrency, toCurrency)
         verifyNoMoreInteractions(currenciesRateApiWrapper)
         verify(exchangeRateDao).getExchangeRate(fromCurrency, toCurrency)
