@@ -16,6 +16,14 @@ class AddTransactionPresenter @Inject constructor(
         private val router: Router
 ) : AppPresenter<AddTransactionView>() {
 
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        walletInteractor.getAllWallets()
+                .compose(rxSchedulersTransformer.ioToMainTransformerFlowable())
+                .subscribe(viewState::showWallets)
+                .connect(compositeDisposable)
+    }
+
     fun createTransaction(transaction: Transaction) {
         walletInteractor.createTransaction(transaction)
                 .compose(rxSchedulersTransformer.ioToMainTransformerCompletable())
@@ -23,8 +31,8 @@ class AddTransactionPresenter @Inject constructor(
                 .connect(compositeDisposable)
     }
 
-    fun closeFragment() {
-        router.exit()
+    fun closeFragment(exitMsg: String) {
+        router.exitWithMessage(exitMsg)
     }
 
 }

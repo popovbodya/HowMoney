@@ -75,6 +75,7 @@ dependencies {
     // rxjava
     implementation libraries.rxKotlin
     implementation libraries.rxAndroid
+    implementation libraries.rxBinding
     // moxy
     implementation libraries.moxy
     implementation libraries.moxyAndroid
@@ -94,6 +95,7 @@ dependencies {
     implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
     implementation 'info.hoang8f:android-segmented:1.0.6'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'com.appyvet:materialrangebar:1.4.3'
     // test
     testImplementation libraries.junit
     testImplementation libraries.hamcrest

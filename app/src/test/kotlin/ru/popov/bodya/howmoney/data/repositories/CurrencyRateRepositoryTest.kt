@@ -38,7 +38,7 @@ class CurrencyRateRepositoryTest {
         currencyRateRepository.getExchangeRate(fromCurrency, toCurrency)
                 .test()
                 .assertValue(expected.result)
-        
+
         verify(currenciesRateApiWrapper).getCurrentRate(fromCurrency, toCurrency)
         verifyNoMoreInteractions(currenciesRateApiWrapper)
         verify(exchangeRateDao).insert(ExchangeRate(fromCurrency, toCurrency, expected.result, expected.date))

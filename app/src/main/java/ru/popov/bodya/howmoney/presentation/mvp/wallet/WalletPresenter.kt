@@ -78,11 +78,11 @@ class WalletPresenter @Inject constructor(
     }
 
     fun onAddNewIncomeTransactionFabClick() {
-        router.newScreenChain(Screens.NEW_TRANSACTION_SCREEN, "INCOME")
+        router.newScreenChain(Screens.NEW_TRANSACTION_SCREEN, true)
     }
 
     fun onAddNewExpenseTransactionFabClick() {
-        router.newScreenChain(Screens.NEW_TRANSACTION_SCREEN, "EXPENSE")
+        router.newScreenChain(Screens.NEW_TRANSACTION_SCREEN, false)
     }
 
     fun onCurrencyChanged(newCurrency: Currency, currentWalletId: Int) {
