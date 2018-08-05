@@ -7,7 +7,7 @@ ext {
     VERSION_NAME = "0.1"
 
     versions = [
-            supportLibs      : '27.0.2',
+            supportLibs      : '27.1.1',
             supportConstraint: '1.0.2',
             archPersistence  : '1.1.1',
             kotlin           : '1.2.51',
