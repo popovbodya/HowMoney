@@ -12,11 +12,12 @@ import ru.popov.bodya.howmoney.data.database.dao.WalletDao
 import ru.popov.bodya.howmoney.data.database.executors.Executors
 import ru.popov.bodya.howmoney.domain.wallet.models.*
 import ru.popov.bodya.howmoney.domain.wallet.models.Currency
+import java.util.*
 
 @TypeConverters(TimeStampConverter::class, CurrencyTypeConverter::class,
         TransactionCategoryConverter::class,
         WalletTypeConverter::class)
-@Database(entities = [Transaction::class, Wallet::class, ExchangeRate::class], version = 2, exportSchema = false)
+@Database(entities = [Transaction::class, Wallet::class, ExchangeRate::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract val transactionsDao: TransactionsDao
     abstract val walletDao: WalletDao

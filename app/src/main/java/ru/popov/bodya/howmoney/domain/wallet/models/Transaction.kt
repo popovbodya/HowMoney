@@ -12,6 +12,8 @@ data class Transaction(@PrimaryKey(autoGenerate = true) val id: Int = 0,
                        val category: Category = Category.OTHER,
                        val walletId: Int = 0,
                        val comment: String = "",
+                       val periodic: Boolean = false,
+                       val period: Long? = 0,
                        val date: Date)
 
 enum class Category {

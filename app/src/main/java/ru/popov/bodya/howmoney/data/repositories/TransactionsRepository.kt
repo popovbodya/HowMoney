@@ -1,5 +1,6 @@
 package ru.popov.bodya.howmoney.data.repositories
 
+import android.util.Log
 import io.reactivex.Completable
 import ru.popov.bodya.howmoney.data.database.dao.TransactionsDao
 import ru.popov.bodya.howmoney.domain.wallet.models.Transaction
@@ -7,6 +8,8 @@ import ru.popov.bodya.howmoney.domain.wallet.models.Transaction
 class TransactionsRepository(private val transactionsDao: TransactionsDao) {
     fun addTransaction(transaction: Transaction)
             = Completable.fromAction { transactionsDao.insert(transaction) }.subscribe()
+
+    fun addPeriodicTransaction(transaction: Transaction) = Completable.fromAction { transactionsDao.insert(transaction) }
 
     fun addTransactions(transactions: List<Transaction>)
             = Completable.fromAction { transactionsDao.insertAll(transactions) }.subscribe()
@@ -22,6 +25,9 @@ class TransactionsRepository(private val transactionsDao: TransactionsDao) {
 
     fun getAllTransactions()
             = transactionsDao.getAllTransactions()
+
+    fun getAllPeriodicTransactions()
+            = transactionsDao.getAllPeriodicTransactions()
 
     fun getAllIncomeTransactions()
             = transactionsDao.getAllIncomeTransactions()
@@ -45,8 +51,8 @@ class TransactionsRepository(private val transactionsDao: TransactionsDao) {
             = transactionsDao.getAllExpenseTransactionsByWalletId(walletId)
 
     fun deleteTransaction(transaction: Transaction)
-            = Completable.fromAction { transactionsDao.delete(transaction) }.subscribe()
+            = Completable.fromAction { transactionsDao.delete(transaction) }
 
     fun updateTransaction(transaction: Transaction)
-            = Completable.fromAction { transactionsDao.update(transaction) }.subscribe()
+            = Completable.fromAction { transactionsDao.update(transaction) }
 }
