@@ -53,7 +53,6 @@ class SettingsFragment : BaseFragment(), SettingsView {
         }
     }
 
-
     private fun initUI() {
         rg_currencies.setOnCheckedChangeListener { _, checkedId ->
             when(checkedId) {

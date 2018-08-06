@@ -18,7 +18,7 @@ class TransactionsRepositoryTest {
     private lateinit var transactionsRepository: TransactionsRepository
     private lateinit var transactionsDao: TransactionsDao
 
-    private val transactionForTesting = Transaction(0, Currency.RUB, 1.0, Category.OTHER, 0, "OTHER", Date())
+    private val transactionForTesting = Transaction(0, Currency.RUB, 1.0, Category.OTHER, 0, "OTHER", date = Date())
 
     @Before
     fun setUp() {

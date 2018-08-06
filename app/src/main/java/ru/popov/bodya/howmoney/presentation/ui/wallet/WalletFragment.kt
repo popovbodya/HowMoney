@@ -138,9 +138,9 @@ class WalletFragment : BaseFragment(), WalletView {
 
     private fun initTransactionsList() {
         transactionsAdapter = TransactionsRVAdapter()
-        rv_actions.adapter = transactionsAdapter
+        rv_transactions.adapter = transactionsAdapter
         val linearLayoutManager = LinearLayoutManager(context)
-        rv_actions.layoutManager = linearLayoutManager
+        rv_transactions.layoutManager = linearLayoutManager
 
         tl_transaction_types.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
@@ -154,7 +154,7 @@ class WalletFragment : BaseFragment(), WalletView {
             }
         })
 
-        rv_actions.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        rv_transactions.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 if (dy > 20 && fab_add.visibility == View.VISIBLE) {
                     hideFab()

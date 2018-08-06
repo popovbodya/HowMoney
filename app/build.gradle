@@ -100,4 +100,9 @@ dependencies {
     testImplementation libraries.junit
     testImplementation libraries.hamcrest
     testImplementation libraries.mockito
+
+    androidTestImplementation libraries.androidTestRunner
+    androidTestImplementation libraries.espressoCore
+    androidTestImplementation libraries.espressoContrib
+    androidTestImplementation libraries.androidTestRules
 }

@@ -283,7 +283,7 @@
         </android.support.design.widget.TabLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_actions"
+            android:id="@+id/rv_transactions"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tl_transaction_types"
@@ -300,7 +300,7 @@
         app:fab_addButtonSize="normal"
         app:fab_labelStyle="@style/menu_labels_style"
         app:fab_labelsPosition="left"
-        app:layout_anchor="@id/rv_actions"
+        app:layout_anchor="@id/rv_transactions"
         app:layout_anchorGravity="bottom|end|right">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
