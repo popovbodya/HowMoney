@@ -1,4 +1,4 @@
-package ru.popov.bodya.howmoney.db
+package ru.popov.bodya.howmoney.db.dao
 
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry

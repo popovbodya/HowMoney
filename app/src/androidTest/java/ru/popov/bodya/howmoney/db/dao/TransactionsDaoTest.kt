@@ -1,10 +1,8 @@
-package ru.popov.bodya.howmoney.db
+package ru.popov.bodya.howmoney.db.dao
 
-import android.arch.persistence.room.Query
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import org.junit.After
 import org.junit.Before

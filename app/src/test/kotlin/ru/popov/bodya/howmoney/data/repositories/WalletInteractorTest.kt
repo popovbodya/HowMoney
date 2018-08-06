@@ -28,7 +28,7 @@ class WalletInteractorTest {
 
     @Before
     fun setUp() {
-        transactionForTesting = Transaction(0, Currency.RUB, 1.0, Category.OTHER, 0, "OTHER", Date())
+        transactionForTesting = Transaction(0, Currency.RUB, 1.0, Category.OTHER, 0, "OTHER", periodic = false, period = 0, date = Date())
         walletForTesting = Wallet(0, 1.0, Type.CASH, Currency.RUB, "Основной кошелек")
         walletRepository = mock(WalletRepository::class.java)
         currenciesRateApiWrapper = mock(CurrenciesRateApiWrapper::class.java)
