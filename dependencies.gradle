@@ -25,6 +25,7 @@ ext {
             mockito          : '2.19.1',
             hamcrest         : '1.3',
             expresso         : '3.0.2',
+            robolectric      : '3.8',
             androidTestRules : '1.0.2'
     ]
 
@@ -86,6 +87,7 @@ ext {
             junit                  : "junit:junit:$versions.junit",
             hamcrest               : "org.hamcrest:hamcrest-all:$versions.hamcrest",
             mockito                : "org.mockito:mockito-core:$versions.mockito",
+            robolectric            : "org.robolectric:robolectric:$versions.robolectric",
             espressoCore           : "com.android.support.test.espresso:espresso-core:$versions.expresso",
             espressoContrib        : "com.android.support.test.espresso:espresso-contrib:$versions.expresso",
             androidTestRules       : "com.android.support.test:rules:$versions.androidTestRules",
