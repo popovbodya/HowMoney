@@ -1,35 +1,24 @@
 package ru.popov.bodya.howmoney.data.database.dao
 
-import ru.popov.bodya.howmoney.domain.operation.models.EnrollmentOperation
-import ru.popov.bodya.howmoney.domain.operation.models.ExpenseOperation
-import ru.popov.bodya.howmoney.domain.operation.models.Operation
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Query
+import io.reactivex.Flowable
+import ru.popov.bodya.howmoney.domain.wallet.models.Wallet
 
-/**
- *  @author popovbodya
- */
-interface WalletDao {
+@Dao
+interface WalletDao : BaseDao<Wallet> {
+    @Query("SELECT * FROM wallets")
+    fun getAllWallets(): Flowable<List<Wallet>>
 
-    fun getDebitWalletEnrollmentOperationList(): List<EnrollmentOperation>
+    @Query("SELECT * FROM wallets WHERE id=:id")
+    fun getWalletById(id: Int): Flowable<Wallet>
 
-    fun getDebitWalletExpenseOperationList(): List<ExpenseOperation>
+    @Query("UPDATE wallets SET amount=:newBalance WHERE id=:walletId")
+    fun updateWalletBalance(walletId: Int, newBalance: Double)
 
-    fun getCreditWalletEnrollmentOperationList(): List<EnrollmentOperation>
+    @Query("UPDATE wallets SET amount=(amount+:inc) WHERE id=:walletId")
+    fun increaseWalletBalance(walletId: Int, inc: Double)
 
-    fun getCreditWalletExpenseOperationList(): List<ExpenseOperation>
-
-    fun getCacheWalletEnrollmentOperationList(): List<EnrollmentOperation>
-
-    fun getCacheWalletExpenseOperationList(): List<ExpenseOperation>
-
-    fun saveDebitWalletEnrollOperation(enrollmentOperation: EnrollmentOperation)
-
-    fun saveDebitWalletExpenseOperation(expenseOperation: ExpenseOperation)
-
-    fun saveCreditWalletEnrollOperation(enrollmentOperation: EnrollmentOperation)
-
-    fun saveCreditWalletExpenseOperation(expenseOperation: ExpenseOperation)
-
-    fun saveCacheWalletEnrollOperation(enrollmentOperation: EnrollmentOperation)
-
-    fun saveCacheWalletExpenseOperation(expenseOperation: ExpenseOperation)
+    @Query("DELETE FROM wallets WHERE id=:walletId")
+    fun deleteWalletById(walletId: Int)
 }
